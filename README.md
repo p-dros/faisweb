@@ -117,8 +117,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
 Project Link: [https://github.com/p-dros/faisweb](https://github.com/p-dros/faisweb)
 
 <!-- MARKDOWN LINKS & IMAGES -->
