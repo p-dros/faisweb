@@ -18,7 +18,7 @@ function ErrorPage() {
   }
 
   return (
-    <Center h={'100vh'}>
+    <Center minH={'100vh'}>
       <Flex direction={'column'} align={'center'} gap={4}>
         <Heading as={'h1'} size={'3xl'}>
           Oops!
