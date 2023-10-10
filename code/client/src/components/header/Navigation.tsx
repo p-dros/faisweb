@@ -9,29 +9,65 @@ import {
   Box,
   useDisclosure,
   Button,
+  Avatar,
+  Flex,
+  Show,
+  Text,
+  Stack,
+  StackDivider,
+  Menu,
+  MenuButton,
+  MenuList,
 } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
+import Link from './NavLink'
+
+interface NavLink {
+  content: ReactNode
+  path: string
+}
+
+const links: NavLink[] = [
+  {
+    content: 'Your Profile',
+    path: '/profile',
+  },
+  {
+    content: 'Favorite Courses',
+    path: '/favorite ',
+  },
+]
 
 function Mobile() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const triggerRef = useRef<HTMLButtonElement>(null)
 
   return (
-    <Box display={{ md: 'none' }}>
-      <Button aria-label='Menu' ref={triggerRef} variant={'outline'} onClick={onOpen}>
-        <HamburgerIcon />
+    <Box as='nav' px={4}>
+      <Button aria-label='Menu' ref={triggerRef} variant={'ghost'} onClick={onOpen}>
+        <HamburgerIcon boxSize={8} />
       </Button>
-      <Drawer isOpen={isOpen} placement='right' onClose={onClose} finalFocusRef={triggerRef}>
+      <Drawer isOpen={isOpen} placement='right' size={'md'} onClose={onClose} finalFocusRef={triggerRef}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Hello</DrawerHeader>
+          <DrawerHeader as={Flex} direction={'row'} gap={3} align={'center'}>
+            <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+            <Flex direction={'column'} justify={'space-around'} h={'full'}>
+              <Text fontSize={'sm'}>p-dros</Text>
+              <Text fontSize={'xs'} opacity={'0.7'}>
+                Piotr Dros
+              </Text>
+            </Flex>
+          </DrawerHeader>
           <DrawerBody>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quaerat quia et provident nemo voluptates
-            voluptatibus. Aspernatur obcaecati repudiandae velit ipsum magni quae maxime suscipit placeat dignissimos
-            quidem, enim ratione! Harum, blanditiis placeat numquam illum eius quidem magni, adipisci commodi animi
-            optio, non laudantium! Velit quasi beatae error, voluptatibus nesciunt consequuntur repellendus a culpa
-            illum eveniet. Doloribus mollitia ullam maiores!
+            <Stack divider={<StackDivider />}>
+              {links.map((link) => (
+                <Box key={link.path}>
+                  <Link to={link.path}>{link.content}</Link>
+                </Box>
+              ))}
+            </Stack>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
@@ -40,15 +76,44 @@ function Mobile() {
 }
 
 function Desktop() {
-  return <Box display={{ md: 'block', base: 'none' }}>Desktop</Box>
+  return (
+    <Flex as='nav' gap={8} align={'center'}>
+      <Flex gap={4}>
+        {links.map((link) => (
+          <Box key={link.path}>
+            <Link to={link.path}>{link.content}</Link>
+          </Box>
+        ))}
+      </Flex>
+      <Menu>
+        <MenuButton>
+          <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+        </MenuButton>
+        <MenuList>
+          <Stack divider={<StackDivider />}>
+            <Box px={4} py={2}>
+              Log in
+            </Box>
+            <Box px={4} py={2}>
+              Sign up
+            </Box>
+          </Stack>
+        </MenuList>
+      </Menu>
+    </Flex>
+  )
 }
 
 function Navigation() {
   return (
-    <Box>
-      <Mobile />
-      <Desktop />
-    </Box>
+    <>
+      <Show below={'md'}>
+        <Mobile />
+      </Show>
+      <Show above={'md'}>
+        <Desktop />
+      </Show>
+    </>
   )
 }
 
