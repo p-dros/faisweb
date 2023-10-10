@@ -17,6 +17,8 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
   },
   settings: {
     react: {
