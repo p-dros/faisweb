@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 
-import Root from './routes/Layout'
+import Layout from './routes/Layout'
 import ErrorPage from './routes/Error'
 import theme from './theme'
 import Home from './routes/Home'
+import SignIn from './routes/auth/SignIn'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
         element: <Home />,
       },
     ],
+  },
+  {
+    path: '/sign-in',
+    element: <SignIn />,
+    errorElement: <ErrorPage />,
   },
 ])
 

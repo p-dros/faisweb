@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "cd ../.. && husky install code/client/.husky",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "generate-types": "npx pocketbase-typegen --db ../server/pb_data/data.db --out src/types/pocketbase-types.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -21,6 +22,8 @@
     "pocketbase": "^0.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
     "zustand": "^4.4.3"
   },
