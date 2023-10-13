@@ -19,7 +19,7 @@ import Link from '@ui/Link'
 import { useRef } from 'react'
 import { navLinks, signInLink, signUpLink } from './links'
 import { authStore } from '@stores/authStore'
-import Logo from './Logo'
+import Logo from '../ui/Logo'
 
 function Mobile() {
   const { isOpen, onOpen, onClose } = useDisclosure()

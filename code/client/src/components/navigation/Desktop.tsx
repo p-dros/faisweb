@@ -2,7 +2,7 @@ import Link from '@ui/Link'
 import { Avatar, Box, Button, Flex, Grid } from '@chakra-ui/react'
 import { authStore } from '@stores/authStore'
 import { navLinks, signInLink, signUpLink } from './links'
-import Logo from './Logo'
+import Logo from '../ui/Logo'
 
 function Desktop() {
   const user = authStore((state) => state.currentUser)
