@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react'
 import Link from '@ui/Link'
 import { useRef } from 'react'
-import { links } from './links'
+import { navLinks, signInLink, signUpLink } from './links'
 import { authStore } from '@stores/authStore'
 import Logo from './Logo'
 
@@ -34,11 +34,11 @@ function Mobile() {
         <Button aria-label='Menu' ref={triggerRef} variant={'ghost'} onClick={onOpen}>
           <HamburgerIcon boxSize={8} />
         </Button>
-        <Drawer isOpen={isOpen} placement='right' size={'md'} onClose={onClose} finalFocusRef={triggerRef}>
+        <Drawer isOpen={isOpen} placement='right' size={'full'} onClose={onClose} finalFocusRef={triggerRef}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader as={Flex} direction={'row'} gap={3} align={'center'}>
+            <DrawerHeader as={Flex} direction={'row'} gap={3} align={'center'} fontSize={'3xl'}>
               {user !== null ? (
                 <>
                   <Avatar name={user.name} src={user.avatar} />
@@ -50,16 +50,28 @@ function Mobile() {
                   </Flex>
                 </>
               ) : (
-                <div>Log in</div>
+                <>Hello</>
               )}
             </DrawerHeader>
             <DrawerBody>
               <Stack divider={<StackDivider />}>
-                {links.map((link) => (
-                  <Box key={link.path}>
-                    <Link to={link.path}>{link.title}</Link>
-                  </Box>
+                {navLinks.map(({ path, title, icon }) => (
+                  <Link key={path} to={path} fontSize={'lg'}>
+                    <Flex gap={2} align={'center'}>
+                      {icon}
+                      {title}
+                    </Flex>
+                  </Link>
                 ))}
+                <Link to={signInLink.path} fontSize={'lg'}>
+                  <Flex gap={2} align={'center'}>
+                    {signInLink.icon}
+                    {signInLink.title}
+                  </Flex>
+                </Link>
+                <Button as={Link} to={signUpLink.path} variant={'solid'} colorScheme='blue'>
+                  {signUpLink.title}
+                </Button>
               </Stack>
             </DrawerBody>
           </DrawerContent>

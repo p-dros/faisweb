@@ -3,7 +3,7 @@ import { Container } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
 import Navigation from '../components/navigation'
 
-function Root() {
+function Layout() {
   return (
     <>
       <Navigation />
@@ -14,4 +14,4 @@ function Root() {
   )
 }
 
-export default Root
+export default Layout
