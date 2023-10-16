@@ -4,6 +4,7 @@ import { Button, FormControl, FormErrorMessage, FormLabel, Input, StackDivider, 
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
 import AuthCard from './AuthCard'
+import { ClientResponseError } from 'pocketbase'
 
 interface Inputs {
   email: string
@@ -26,11 +27,15 @@ function SignIn() {
         email,
         password,
       })
-    } catch (error) {
-      setError('password', {
-        type: 'manual',
-        message: `Invalid email or password`,
-      })
+    } catch (error: unknown) {
+      if (error instanceof ClientResponseError) {
+        if (error.status === 400) {
+          setError('password', {
+            type: 'manual',
+            message: `Invalid email or password`,
+          })
+        }
+      }
     }
   }
 
