@@ -1131,6 +1131,11 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.51.0.tgz"
   integrity sha512-HxjQ8Qn+4SI3/AFv6sOrDB+g6PpUTDwSJiQqOrnneEk8L71161srI9gjzzZvYVbzHiVg/BvcH95+cK/zfIt4pg==
 
+"@fontsource-variable/noto-sans-tc@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/noto-sans-tc/-/noto-sans-tc-5.0.3.tgz#c85d081c940c0242ed389ecc2601ffa0548e6216"
+  integrity sha512-hEqllgvcOnQoA1mcoY2ymcUJCF2ISpOAF5D1XPO7gO/qCG+C+VivTtjZBE3eNzFOhzwrAkCkXRo91XcUVoOorw==
+
 "@humanwhocodes/config-array@^0.11.11":
   version "0.11.11"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.11.tgz"
