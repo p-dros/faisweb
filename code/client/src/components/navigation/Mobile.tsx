@@ -1,3 +1,4 @@
+import Logo from '@/components/Logo'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Avatar,
@@ -15,11 +16,14 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
+import { authStore } from '@stores/authStore'
 import Link from '@ui/Link'
 import { useRef } from 'react'
-import { navLinks, signInLink, signUpLink } from './links'
-import { authStore } from '@stores/authStore'
-import Logo from '../ui/Logo'
+import { authLinks, navLinks, userLinks } from './links'
+import { SignOutButton } from '../auth/buttons'
+import IconLink from './IconLink'
+
+const { signIn: signInLink, signUp: signUpLink } = authLinks
 
 function Mobile() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -50,28 +54,40 @@ function Mobile() {
                   </Flex>
                 </>
               ) : (
-                <>Hello</>
+                <>FAISWeb</>
               )}
             </DrawerHeader>
             <DrawerBody>
               <Stack divider={<StackDivider />}>
-                {navLinks.map(({ path, title, icon }) => (
-                  <Link key={path} to={path} fontSize={'lg'}>
-                    <Flex gap={2} align={'center'}>
-                      {icon}
-                      {title}
-                    </Flex>
-                  </Link>
-                ))}
-                <Link to={signInLink.path} fontSize={'lg'}>
-                  <Flex gap={2} align={'center'}>
-                    {signInLink.icon}
-                    {signInLink.title}
-                  </Flex>
-                </Link>
-                <Button as={Link} to={signUpLink.path} variant={'solid'} colorScheme='blue'>
-                  {signUpLink.title}
-                </Button>
+                <Stack>
+                  {navLinks.map(({ path, title, icon }) => (
+                    <IconLink key={path} to={path} icon={icon} title={title} />
+                  ))}
+                </Stack>
+
+                {user ? (
+                  <>
+                    <Stack>
+                      {userLinks.map(({ path, title, icon }) => (
+                        <IconLink key={path} to={path} icon={icon} title={title} />
+                      ))}
+                    </Stack>
+                    <SignOutButton mt={4} />
+                  </>
+                ) : (
+                  <>
+                    <IconLink
+                      key={signInLink.path}
+                      to={signInLink.path}
+                      icon={signInLink.icon}
+                      title={signInLink.title}
+                    />
+
+                    <Button mt={4} as={Link} to={signUpLink.path} variant={'solid'} colorScheme='blue'>
+                      {signUpLink.title}
+                    </Button>
+                  </>
+                )}
               </Stack>
             </DrawerBody>
           </DrawerContent>

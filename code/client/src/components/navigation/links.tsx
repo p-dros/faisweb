@@ -1,11 +1,11 @@
-import { ReactNode } from 'react'
 import { Icon } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 
-import { FaChalkboardTeacher, FaBook, FaDoorOpen } from 'react-icons/fa'
-import { FaRankingStar } from 'react-icons/fa6'
+import { FaBook, FaChalkboardTeacher } from 'react-icons/fa'
+import { FaKey, FaRankingStar, FaUser } from 'react-icons/fa6'
 
 interface NavLink {
-  title: ReactNode
+  title: string
   path: string
   icon?: ReactNode
 }
@@ -28,13 +28,22 @@ export const navLinks: NavLink[] = [
   },
 ]
 
-export const signInLink: NavLink = {
-  title: 'Sign In',
-  path: '/sign-in',
-  icon: <Icon as={FaDoorOpen} />,
-}
+export const userLinks: NavLink[] = [
+  {
+    title: 'Profile',
+    path: '/profile',
+    icon: <Icon as={FaUser} />,
+  },
+]
 
-export const signUpLink: NavLink = {
-  title: 'Get started',
-  path: '/sign-up',
+export const authLinks = {
+  signIn: {
+    title: 'Sign In',
+    path: '/sign-in',
+    icon: <Icon as={FaKey} />,
+  },
+  signUp: {
+    title: 'Get started',
+    path: '/sign-up',
+  },
 }

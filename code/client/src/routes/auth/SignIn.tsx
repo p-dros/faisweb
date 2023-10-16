@@ -1,5 +1,8 @@
+import { signIn } from '@/lib/auth'
+import { authStore } from '@/stores/authStore'
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, StackDivider, VStack } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { Navigate } from 'react-router-dom'
 import AuthCard from './AuthCard'
 
 interface Inputs {
@@ -8,13 +11,32 @@ interface Inputs {
 }
 
 function SignIn() {
+  const user = authStore((state) => state.currentUser)
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setError,
   } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    try {
+      await signIn({
+        email,
+        password,
+      })
+    } catch (error) {
+      setError('password', {
+        type: 'manual',
+        message: `Invalid email or password`,
+      })
+    }
+  }
+
+  if (user) {
+    return <Navigate to={'/'} />
+  }
 
   return (
     <AuthCard title={'Sign In'} additionalDescription={'Use your account'}>
@@ -23,13 +45,27 @@ function SignIn() {
           <VStack>
             <FormControl isInvalid={!!errors.email}>
               <FormLabel htmlFor='email'>Email</FormLabel>
-              <Input {...register('email', { required: true })} />
+              <Input
+                {...register('email', {
+                  required: 'Required',
+                  maxLength: 20,
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Invalid email address',
+                  },
+                })}
+              />
               <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={!!errors.password}>
               <FormLabel htmlFor='password'>Password</FormLabel>
-              <Input type='password' {...register('password', { required: true })} />
-              <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+              <Input
+                type='password'
+                {...register('password', {
+                  required: 'Required',
+                })}
+              />
+              <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
             </FormControl>
           </VStack>
 

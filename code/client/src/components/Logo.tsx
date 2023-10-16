@@ -1,5 +1,5 @@
 import { Image } from '@chakra-ui/react'
-import Link from './Link'
+import Link from './ui/Link'
 
 export default function Logo() {
   return (

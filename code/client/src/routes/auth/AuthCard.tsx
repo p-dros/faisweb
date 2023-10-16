@@ -1,4 +1,4 @@
-import Logo from '@ui/Logo'
+import Logo from '@/components/Logo'
 import { Card, CardBody, CardHeader, Center, Flex, Heading, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
