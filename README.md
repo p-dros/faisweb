@@ -29,7 +29,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/p-dros/faisweb">
-    <img src="images/fais.jpg" alt="Logo" width="400">
+    <img src="https://en.uj.edu.pl/documents/81541894/152871422/06-kampus.jpg/9b21d914-f0d4-4cdb-9188-acf170478b1b" alt="Logo" width="400">
   </a>
 
 <h3 align="center">FAISWEB</h3>
