@@ -37,7 +37,7 @@ function Home() {
             </Text>{' '}
             Department
           </Text>
-          <Button colorScheme='purple' as={Link} to={authLinks.signUp.path}>
+          <Button as={Link} to={authLinks.signUp.path}>
             {authLinks.signUp.title}
           </Button>
         </VStack>
