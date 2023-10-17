@@ -1,7 +1,7 @@
 import Link from '@ui/Link'
 import { Avatar, Box, Button, Flex, Grid, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from '@chakra-ui/react'
 import { authStore } from '@stores/authStore'
-import { navLinks, userLinks, authLinks } from './links'
+import { navLinks, userLinks, authLinks } from '../../config/links'
 import Logo from '../Logo'
 import IconLink from './IconLink'
 import { SignOutButton } from '../auth/buttons'

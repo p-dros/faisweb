@@ -19,7 +19,7 @@ import {
 import { authStore } from '@stores/authStore'
 import Link from '@ui/Link'
 import { useRef } from 'react'
-import { authLinks, navLinks, userLinks } from './links'
+import { authLinks, navLinks, userLinks } from '../../config/links'
 import { SignOutButton } from '../auth/buttons'
 import IconLink from './IconLink'
 
