@@ -11,6 +11,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  Heading,
   Stack,
   StackDivider,
   Text,
@@ -54,7 +55,7 @@ function Mobile() {
                   </Flex>
                 </>
               ) : (
-                <>Hello</>
+                <Heading>Hello</Heading>
               )}
             </DrawerHeader>
             <DrawerBody fontSize={'lg'}>
