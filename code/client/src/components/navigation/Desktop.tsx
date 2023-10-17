@@ -31,12 +31,12 @@ function Desktop() {
             <MenuList>
               {userLinks.map(({ path, title, icon }) => (
                 <MenuItem key={path}>
-                  <IconLink to={path} fontSize={'lg'} icon={icon} title={title} />
+                  <IconLink w={'full'} to={path} fontSize={'lg'} icon={icon} title={title} />
                 </MenuItem>
               ))}
               <MenuDivider />
               <MenuItem>
-                <SignOutButton as={Link} />
+                <SignOutButton variant={'ghost'} as={Link} />
               </MenuItem>
             </MenuList>
           </Menu>
