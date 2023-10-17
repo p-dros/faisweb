@@ -57,7 +57,7 @@ function Mobile() {
                 <>FAISWeb</>
               )}
             </DrawerHeader>
-            <DrawerBody>
+            <DrawerBody fontSize={'lg'}>
               <Stack divider={<StackDivider />}>
                 <Stack>
                   {navLinks.map(({ path, title, icon }) => (
@@ -83,7 +83,7 @@ function Mobile() {
                       title={signInLink.title}
                     />
 
-                    <Button mt={4} as={Link} to={signUpLink.path} variant={'solid'} colorScheme='blue'>
+                    <Button mt={4} as={Link} to={signUpLink.path} variant={'solid'} colorScheme='purple'>
                       {signUpLink.title}
                     </Button>
                   </>

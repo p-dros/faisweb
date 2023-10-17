@@ -14,7 +14,12 @@ function Desktop() {
       <Logo />
       <Flex justifySelf={'center'} as={'nav'} gap={8}>
         {navLinks.map(({ path, title, icon }) => (
-          <IconLink key={path} to={path} fontSize={'lg'} icon={icon} title={title} />
+          <Button variant={'ghost'} as={Link} key={path} to={path} fontSize={'lg'}>
+            <Flex gap={2} align={'center'}>
+              {icon}
+              {title}
+            </Flex>
+          </Button>
         ))}
       </Flex>
       <Box justifySelf={'end'}>
