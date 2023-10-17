@@ -4,7 +4,7 @@ import Mobile from './Mobile'
 
 function Navigation() {
   return (
-    <Center position={'sticky'} top={0} as='header'>
+    <Center position={'sticky'} top={0} as='header' w='full' bgColor={'white'} boxShadow={'md'}>
       <Show below={'md'}>
         <Mobile />
       </Show>
