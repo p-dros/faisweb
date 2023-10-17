@@ -54,7 +54,7 @@ function Mobile() {
                   </Flex>
                 </>
               ) : (
-                <>FAISWeb</>
+                <>Hello</>
               )}
             </DrawerHeader>
             <DrawerBody fontSize={'lg'}>
