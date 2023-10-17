@@ -1,22 +1,20 @@
 # UI dangers
 
-## Logowanie
+## Autentykacja
+
+### Logowanie
 
 - zalogowanie na konto bez weryfikacji mailowej konta
 - wprowadzenie błędnych danych logowania
 - zbyt wiele prób logowania na konto
 
-## Rejestracja
+### Rejestracja
 
 - założenie konta na adres mailowy bez domeny UJ
 - założenie konta na ten sam adres mailowy
 - wprowadzone zostały zbyt długie dane
 
-## Polubienie kursu
-
-- polubienie kursu przez osobę niezalogowaną
-
-## Dodanie opinii
+## Opinie
 
 - dodanie opini przez osobę niezalogowaną
 - nieodpowiedni format
@@ -28,13 +26,20 @@
 ### Komentarze pod opiniami
 
 - dodanie komentarze przez osobę niezalogowaną
+- usunięcie komentarza przez osobę niebędącą adminem
 - nieodpowiedni format
   - dodanie pustego komentarze
   - dodanie zbyt długiego komentarza
   - dodanie komentarza niepoprawnego politycznie
 - spam
 
-## Utworzenie kursu
+## Kurs
+
+### Polubienie kursu
+
+- polubienie kursu przez osobę niezalogowaną
+
+### Tworzenie
 
 - utworzenie kursu osoby bez autoryzacji (admin)
 
