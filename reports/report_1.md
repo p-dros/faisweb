@@ -4,19 +4,19 @@
 
 ### Logowanie
 
-- zalogowanie na konto bez weryfikacji mailowej konta
-- wprowadzenie błędnych danych logowania
-- zbyt wiele prób logowania na konto
+- zalogowanie na konto bez uprzedniej weryfikacji poprzez link aktywacyjny wysłany na adres e-mail
+- wprowadzenie nieprawidłowych danych logowania
+- duża liczba prób logowania na konto
 
 ### Rejestracja
 
-- założenie konta na adres mailowy bez domeny UJ
+- założenie konta na adres e-mail bez domeny UJ.
 - założenie konta na ten sam adres mailowy
-- wprowadzone zostały zbyt długie dane
+- wprowadzenie zbyt długich danych podczas rejestracji
 
 ## Opinie
 
-- dodanie opini przez osobę niezalogowaną
+- dodawanie opinii przez osoby niezalogowane na platformie
 - nieodpowiedni format
   - dodanie pustej opini
   - dodanie zbyt długiej opini
@@ -25,32 +25,24 @@
 
 ### Komentarze pod opiniami
 
-- dodanie komentarze przez osobę niezalogowaną
-- usunięcie komentarza przez osobę niebędącą adminem
+- dodawanie komentarzy przez osoby niezalogowane na platformie
+- usuwanie komentarzy przez osoby nieposiadające statusu administratora
 - nieodpowiedni format
   - dodanie pustego komentarze
   - dodanie zbyt długiego komentarza
   - dodanie komentarza niepoprawnego politycznie
-- spam (zbyt duża liczba komentarzy)
+- dodawanie zbyt dużej liczby komentarzy
 
 ## Kurs
 
-### Edycja kursu
-
-- Edytowanie kursu przez osobę bez autoryzacji (admin)
-
-### Polubienie kursu
-
 - polubienie kursu przez osobę niezalogowaną
-
-### Tworzenie
-
-- utworzenie kursu przez osobę bez autoryzacji (admin)
+- edytowanie kursu przez osoby nieposiadające statusu administratora
+- utworzenie kursu przez osoby nieposiadające statusu administratora
 
 ## Profil użytkownika
 
-- dostęp do profilu osoby niezalogowanej
+- dostęp do profili użytkowników przez osoby, które nie są zalogowane na platformie.
 
 ## Ogólne
 
-- Zbyt długa nieaktywność na stronie
+- długa nieaktywność na stronie
