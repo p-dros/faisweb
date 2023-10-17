@@ -25,9 +25,7 @@ function ErrorPage() {
         </Heading>
         <Box textAlign={'center'}>
           <Text>Sorry, an unexpected error has occured.</Text>
-          <Text>
-            <Text as={'i'}>{errorMessage}</Text>
-          </Text>
+          <Text as={'i'}>{errorMessage}</Text>
         </Box>
       </Flex>
     </Center>

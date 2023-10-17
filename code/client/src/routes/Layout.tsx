@@ -1,17 +1,15 @@
 import { Container } from '@chakra-ui/react'
 
 import { Outlet } from 'react-router-dom'
-import Header from '../components/header'
+import Navigation from '@components/navigation'
 
-function Root() {
+function Layout() {
   return (
-    <>
-      <Header />
-      <Container maxW={'8xl'}>
-        <Outlet />
-      </Container>
-    </>
+    <Container maxW={'container.xl'} p={2}>
+      <Navigation />
+      <Outlet />
+    </Container>
   )
 }
 
-export default Root
+export default Layout
