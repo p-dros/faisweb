@@ -1,4 +1,4 @@
-# UI dangers
+# Zagrożenia UI
 
 ## Autentykacja
 
@@ -31,9 +31,13 @@
   - dodanie pustego komentarze
   - dodanie zbyt długiego komentarza
   - dodanie komentarza niepoprawnego politycznie
-- spam
+- spam (zbyt duża liczba komentarzy)
 
 ## Kurs
+
+### Edycja kursu
+
+- Edytowanie kursu przez osobę bez autoryzacji (admin)
 
 ### Polubienie kursu
 
@@ -41,7 +45,7 @@
 
 ### Tworzenie
 
-- utworzenie kursu osoby bez autoryzacji (admin)
+- utworzenie kursu przez osobę bez autoryzacji (admin)
 
 ## Profil użytkownika
 
