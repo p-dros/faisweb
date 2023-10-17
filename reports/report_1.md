@@ -43,6 +43,10 @@
 
 - dostęp do profili użytkowników przez osoby, które nie są zalogowane na platformie.
 
+## Mechanizmy wsparcia
+
+- zgłaszanie komentarzy przez jedną osobę bez uzasadnienia
+
 ## Ogólne
 
 - długa nieaktywność na stronie
