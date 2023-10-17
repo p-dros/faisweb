@@ -16,7 +16,7 @@ function Home() {
       <Center minH={'100vh'}>
         <VStack mb={20}>
           <Heading as={'h1'} size={'4xl'} fontWeight={'medium'} textAlign={'center'} maxW={'4xl'}>
-            Faisweb
+            The Best Courses in one place
           </Heading>
           <Text fontSize={'2xl'}>Browse Fais courses</Text>
         </VStack>
