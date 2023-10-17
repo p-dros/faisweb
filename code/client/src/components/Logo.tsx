@@ -4,7 +4,7 @@ import Link from './ui/Link'
 export default function Logo() {
   return (
     <Link to={'/'} p={0}>
-      <Image src='/logo.png' alt='logo' boxSize={'80px'} objectFit={'cover'} />
+      <Image src='/logo.png' alt='logo' w={'180px'} objectFit={'cover'} />
     </Link>
   )
 }
