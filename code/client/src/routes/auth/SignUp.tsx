@@ -60,11 +60,14 @@ function SignUp() {
     }
 
     if (error instanceof ClientResponseError) {
-      setError('email', {
-        type: 'server',
-        message: 'Email is already taken',
-      })
-      return
+      const emailCode = error.response?.data?.email?.code
+      if (emailCode && emailCode === 'validation_invalid_email') {
+        setError('email', {
+          type: 'server',
+          message: error.response?.data?.email?.message,
+        })
+        return
+      }
     }
 
     setError('root', {

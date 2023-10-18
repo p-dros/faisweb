@@ -3,7 +3,7 @@ import Link from '@/components/ui/Link'
 import { authLinks } from '@/config/links'
 import { signIn } from '@/lib/auth'
 import { authStore } from '@/stores/authStore'
-import { Center, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
+import { Alert, AlertIcon, Center, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ClientResponseError } from 'pocketbase'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -26,6 +26,7 @@ function SignIn() {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
+    clearErrors,
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
   })
@@ -37,13 +38,26 @@ function SignIn() {
     })
 
     if (error instanceof ClientResponseError) {
-      if (error.status === 400) {
-        setError('password', {
+      if (error.message === 'Failed to authenticate.') {
+        setError('root', {
           type: 'manual',
-          message: `Invalid email or password`,
+          message: error.message,
         })
+
+        setTimeout(() => {
+          clearErrors('root')
+        }, 3000)
+        return
       }
     }
+
+    setError('root', {
+      message: 'Something went wrong.',
+    })
+
+    setTimeout(() => {
+      clearErrors('root')
+    }, 3000)
   }
 
   if (user) {
@@ -64,6 +78,12 @@ function SignIn() {
             <Input type='password' {...register('password')} />
             <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
           </FormControl>
+          {errors.root && (
+            <Alert status='error'>
+              <AlertIcon />
+              {errors.root.message}
+            </Alert>
+          )}
         </Form>
         <Form.Footer>
           Don&apos;t have an account?{' '}
