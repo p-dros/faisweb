@@ -4,7 +4,15 @@ import Mobile from './Mobile'
 
 function Navigation() {
   return (
-    <Center position={'sticky'} top={0} as='header'>
+    <Center
+      position={'fixed'}
+      paddingBlock={2}
+      top={0}
+      as='header'
+      bgColor={'white'}
+      borderColor={'gray.200'}
+      borderWidth={1}
+      w='full'>
       <Show below={'md'}>
         <Mobile />
       </Show>

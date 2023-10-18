@@ -1,6 +1,6 @@
-// Supports weights 100-900
-import '@fontsource-variable/noto-sans-tc'
+import '@fontsource-variable/plus-jakarta-sans'
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+import Button from './components/button'
 
 const config: ThemeConfig = {
   initialColorMode: 'light',
@@ -10,7 +10,10 @@ const config: ThemeConfig = {
 const theme = extendTheme({
   config,
   fonts: {
-    body: `'Noto Sans TC Variable', 'Times New Roman'`,
+    body: `'Plus Jakarta Sans Variable', 'serif'`,
+  },
+  components: {
+    Button,
   },
 })
 

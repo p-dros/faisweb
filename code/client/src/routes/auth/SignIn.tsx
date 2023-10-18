@@ -1,15 +1,22 @@
+import Form from '@/components/auth/Form'
+import Link from '@/components/ui/Link'
+import { authLinks } from '@/config/links'
 import { signIn } from '@/lib/auth'
 import { authStore } from '@/stores/authStore'
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, StackDivider, VStack } from '@chakra-ui/react'
+import { Center, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { ClientResponseError } from 'pocketbase'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
-import AuthCard from './AuthCard'
-import { ClientResponseError } from 'pocketbase'
 
-interface Inputs {
-  email: string
-  password: string
-}
+import * as yup from 'yup'
+
+const schema = yup.object({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
+})
+
+type Inputs = yup.InferType<typeof schema>
 
 function SignIn() {
   const user = authStore((state) => state.currentUser)
@@ -19,67 +26,69 @@ function SignIn() {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
-  } = useForm<Inputs>()
+  } = useForm<Inputs>({
+    resolver: yupResolver(schema),
+  })
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
-    try {
-      await signIn({
-        email,
-        password,
-      })
-    } catch (error: unknown) {
-      if (error instanceof ClientResponseError) {
-        if (error.status === 400) {
-          setError('password', {
-            type: 'manual',
-            message: `Invalid email or password`,
-          })
-        }
+    const { error } = await signIn({
+      email,
+      password,
+    })
+
+    if (!error) {
+      return
+    }
+
+    console.dir(error)
+
+    if (error instanceof ClientResponseError) {
+      if (error.message === 'Failed to authenticate.') {
+        setError('password', {
+          type: 'manual',
+          message: 'Invalid email or password.',
+        })
+        return
       }
     }
+
+    setError('root.serverError', {
+      message: 'Something went wrong. Please try again later',
+    })
   }
 
   if (user) {
     return <Navigate to={'/'} />
   }
 
-  return (
-    <AuthCard title={'Sign In'} additionalDescription={'Use your account'}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack divider={<StackDivider />} gap={4}>
-          <VStack>
-            <FormControl isInvalid={!!errors.email}>
-              <FormLabel htmlFor='email'>Email</FormLabel>
-              <Input
-                {...register('email', {
-                  required: 'Required',
-                  maxLength: 20,
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address',
-                  },
-                })}
-              />
-              <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={!!errors.password}>
-              <FormLabel htmlFor='password'>Password</FormLabel>
-              <Input
-                type='password'
-                {...register('password', {
-                  required: 'Required',
-                })}
-              />
-              <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-            </FormControl>
-          </VStack>
+  const serverError = errors.root?.serverError
+  if (serverError) {
+    throw new Error(serverError.message)
+  }
 
-          <Button isLoading={isSubmitting} type={'submit'} variant={'solid'} w={'full'}>
-            Sign In
-          </Button>
-        </VStack>
-      </form>
-    </AuthCard>
+  return (
+    <Center minH={'100vh'} p={6}>
+      <Form.Wrapper>
+        <Form title='Sign in to FAISWeb' onSubmit={handleSubmit(onSubmit)} isSubmitting={isSubmitting}>
+          <FormControl isInvalid={!!errors.email}>
+            <FormLabel>Email</FormLabel>
+            <Input {...register('email')} />
+            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={!!errors.password}>
+            <FormLabel>Password</FormLabel>
+            <Input type='password' {...register('password')} />
+            <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+          </FormControl>
+        </Form>
+        <Form.Footer>
+          Don&apos;t have an account?{' '}
+          <Link fontWeight={'bold'} color={'black'} to={authLinks.signUp.path}>
+            Create a free account
+          </Link>
+        </Form.Footer>
+      </Form.Wrapper>
+    </Center>
   )
 }
 

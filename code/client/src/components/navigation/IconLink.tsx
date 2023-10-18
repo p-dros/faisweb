@@ -1,18 +1,18 @@
 import { ComponentProps, ReactNode } from 'react'
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Box } from '@chakra-ui/react'
 import Link from '@ui/Link'
 
 type Props = {
-  title: string
+  children: ReactNode
   icon: ReactNode
-} & Omit<ComponentProps<typeof Link>, 'title'>
+} & ComponentProps<typeof Link>
 
-export default function IconLink({ to, title, icon, ...rest }: Props) {
+export default function IconLink({ to, children, icon, ...rest }: Props) {
   return (
     <Link {...rest} to={to}>
       <Flex gap={2} align={'center'}>
         {icon}
-        <Text>{title}</Text>
+        <Box>{children}</Box>
       </Flex>
     </Link>
   )

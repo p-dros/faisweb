@@ -6,7 +6,7 @@ interface SignInParams {
   password: string
 }
 
-interface SignUpParams {
+interface CreateUserParams {
   email: string
   password: string
   passwordConfirm: string
@@ -14,11 +14,33 @@ interface SignUpParams {
 }
 
 export const signIn = async ({ email, password }: SignInParams) => {
-  return await pb.collection('users').authWithPassword<UsersResponse>(email, password)
+  try {
+    const user = await pb.collection('users').authWithPassword<UsersResponse>(email, password)
+
+    return { user, error: null }
+  } catch (error) {
+    return {
+      user: null,
+      error,
+    }
+  }
 }
 
-export const signUp = async ({ email, password, passwordConfirm, name }: SignUpParams) => {
-  return await pb.collection('users').create<UsersResponse>({ email, password, passwordConfirm, name })
+export const createUser = async ({ email, password, passwordConfirm, name }: CreateUserParams) => {
+  try {
+    const user = await pb.collection('users').create({
+      email,
+      password,
+      passwordConfirm,
+      name,
+    })
+    return { user, error: null }
+  } catch (error) {
+    return {
+      user: null,
+      error,
+    }
+  }
 }
 
 export const signOut = () => pb.authStore.clear()

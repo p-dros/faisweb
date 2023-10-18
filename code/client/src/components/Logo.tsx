@@ -1,10 +1,13 @@
 import { Image } from '@chakra-ui/react'
 import Link from './ui/Link'
+import { ComponentProps } from 'react'
 
-export default function Logo() {
+type Props = Omit<ComponentProps<typeof Link>, 'to'>
+
+export default function Logo(props: Props) {
   return (
-    <Link to={'/'} p={0}>
-      <Image src='/logo.png' alt='logo' boxSize={'80px'} objectFit={'cover'} />
+    <Link {...props} to={'/'} p={0}>
+      <Image src='/logo.png' alt='FAISWeb' w={'180px'} objectFit={'cover'} />
     </Link>
   )
 }

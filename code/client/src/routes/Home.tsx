@@ -1,33 +1,39 @@
-import { Box, Center, Heading, Text, VStack } from '@chakra-ui/react'
+import GridBackground from '@/components/ui/GridBackground'
+import { authLinks } from '@/config/links'
+import { Box, Button, Center, Heading, Text, VStack } from '@chakra-ui/react'
+import Link from '@ui/Link'
 
 function Home() {
   return (
-    <Box>
-      <Box
-        position={'absolute'}
-        h={'100vh'}
-        w={'100vw'}
-        top={0}
-        left={0}
-        zIndex={-1}
-        bgGradient='radial-gradient(circle, orange.300, transparent 70%)'
-        opacity={0.4}
-      />
-      <Center minH={'100vh'}>
-        <VStack mb={20}>
-          <Heading
-            as={'h1'}
-            letterSpacing={'widest'}
-            size={'4xl'}
-            fontWeight={'medium'}
-            textAlign={'center'}
-            maxW={'4xl'}>
-            Browse FAIS courses with ease
+    <Center minH={'100vh'}>
+      <GridBackground variant='radial' opacity={0.35} />
+      <Box>
+        <VStack gap={6} maxW={'4xl'} textAlign={'center'}>
+          <Heading lineHeight={1.3} as={'h1'} size={'3xl'} fontWeight={'bold'}>
+            The Best Courses <br />
+            in One Place
           </Heading>
-          <Text fontSize={'2xl'}>Browse Fais courses</Text>
+          <Text fontSize={'xl'} color={'gray.700'}>
+            Explore, Save, and Connect with the Finest Courses in{' '}
+            <Text
+              to={'https://fais.uj.edu.pl/'}
+              as={Link}
+              fontWeight={600}
+              color={'white'}
+              p={0.5}
+              bgColor={'purple.400'}
+              display={'inline'}
+              letterSpacing={'wide'}>
+              FAIS
+            </Text>{' '}
+            Department
+          </Text>
+          <Button as={Link} to={authLinks.signUp.path}>
+            {authLinks.signUp.title}
+          </Button>
         </VStack>
-      </Center>
-    </Box>
+      </Box>
+    </Center>
   )
 }
 

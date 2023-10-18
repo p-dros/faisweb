@@ -1,7 +1,19 @@
 import Link from '@ui/Link'
-import { Avatar, Box, Button, Flex, Grid, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from '@chakra-ui/react'
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Text,
+  Grid,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+} from '@chakra-ui/react'
 import { authStore } from '@stores/authStore'
-import { navLinks, userLinks, authLinks } from './links'
+import { navLinks, userLinks, authLinks } from '../../config/links'
 import Logo from '../Logo'
 import IconLink from './IconLink'
 import { SignOutButton } from '../auth/buttons'
@@ -14,7 +26,12 @@ function Desktop() {
       <Logo />
       <Flex justifySelf={'center'} as={'nav'} gap={8}>
         {navLinks.map(({ path, title, icon }) => (
-          <IconLink key={path} to={path} fontSize={'lg'} icon={icon} title={title} />
+          <Button variant={'ghost'} as={Link} key={path} to={path} fontSize={'lg'}>
+            <Flex gap={2} align={'center'}>
+              {icon}
+              {title}
+            </Flex>
+          </Button>
         ))}
       </Flex>
       <Box justifySelf={'end'}>
@@ -26,12 +43,14 @@ function Desktop() {
             <MenuList>
               {userLinks.map(({ path, title, icon }) => (
                 <MenuItem key={path}>
-                  <IconLink to={path} fontSize={'lg'} icon={icon} title={title} />
+                  <IconLink w={'full'} to={path} fontSize={'lg'} icon={icon}>
+                    <Text>{title}</Text>
+                  </IconLink>
                 </MenuItem>
               ))}
               <MenuDivider />
               <MenuItem>
-                <SignOutButton as={Link} />
+                <SignOutButton variant={'ghost'} as={Link} />
               </MenuItem>
             </MenuList>
           </Menu>
