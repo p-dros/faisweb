@@ -55,7 +55,7 @@ function SignUp() {
     const { error } = await createUser({ email, name, password, passwordConfirm })
 
     if (!error) {
-      navigate('/sign-in')
+      navigate(authLinks.signIn.path)
       return
     }
 
