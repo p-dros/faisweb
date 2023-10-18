@@ -60,23 +60,24 @@ function SignUp() {
     }
 
     if (error instanceof ClientResponseError) {
-      const emailCode = error.response?.data?.email?.code
-      if (emailCode && emailCode === 'validation_invalid_email') {
+      const emailData = error.response?.data?.email
+      if (emailData.code && emailData.code === 'validation_invalid_email') {
         setError('email', {
           type: 'server',
-          message: error.response?.data?.email?.message,
+          message: emailData.message,
         })
         return
       }
     }
 
-    setError('root', {
+    setError('root.serverError', {
       message: 'Something went wrong. Please try again later',
     })
   }
 
-  if (errors.root) {
-    throw new Error(errors.root.message)
+  const serverError = errors.root?.serverError
+  if (serverError) {
+    throw new Error(serverError.message)
   }
 
   return (

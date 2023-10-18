@@ -3,7 +3,7 @@ import Link from '@/components/ui/Link'
 import { authLinks } from '@/config/links'
 import { signIn } from '@/lib/auth'
 import { authStore } from '@/stores/authStore'
-import { Alert, AlertIcon, Center, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
+import { Center, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ClientResponseError } from 'pocketbase'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -12,7 +12,7 @@ import { Navigate } from 'react-router-dom'
 import * as yup from 'yup'
 
 const schema = yup.object({
-  email: yup.string().email('Is not valid email').required('Email is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
   password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
 })
 
@@ -26,7 +26,6 @@ function SignIn() {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
-    clearErrors,
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
   })
@@ -37,31 +36,34 @@ function SignIn() {
       password,
     })
 
+    if (!error) {
+      return
+    }
+
+    console.dir(error)
+
     if (error instanceof ClientResponseError) {
       if (error.message === 'Failed to authenticate.') {
-        setError('root', {
+        setError('password', {
           type: 'manual',
-          message: error.message,
+          message: 'Invalid email or password.',
         })
-
-        setTimeout(() => {
-          clearErrors('root')
-        }, 3000)
         return
       }
     }
 
-    setError('root', {
-      message: 'Something went wrong.',
+    setError('root.serverError', {
+      message: 'Something went wrong. Please try again later',
     })
-
-    setTimeout(() => {
-      clearErrors('root')
-    }, 3000)
   }
 
   if (user) {
     return <Navigate to={'/'} />
+  }
+
+  const serverError = errors.root?.serverError
+  if (serverError) {
+    throw new Error(serverError.message)
   }
 
   return (
@@ -78,12 +80,6 @@ function SignIn() {
             <Input type='password' {...register('password')} />
             <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
           </FormControl>
-          {errors.root && (
-            <Alert status='error'>
-              <AlertIcon />
-              {errors.root.message}
-            </Alert>
-          )}
         </Form>
         <Form.Footer>
           Don&apos;t have an account?{' '}
