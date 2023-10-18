@@ -24,8 +24,6 @@ import { authLinks, navLinks, userLinks } from '../../config/links'
 import { SignOutButton } from '../auth/buttons'
 import IconLink from './IconLink'
 
-const { signIn: signInLink, signUp: signUpLink } = authLinks
-
 function Mobile() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const triggerRef = useRef<HTMLButtonElement>(null)
@@ -33,7 +31,7 @@ function Mobile() {
   const user = authStore((state) => state.currentUser)
 
   return (
-    <Flex align={'center'} justify={'space-between'} w={'full'}>
+    <Flex align={'center'} justify={'space-between'} w={'full'} px={2}>
       <Logo />
       <Box as='nav' px={4}>
         <Button aria-label='Menu' ref={triggerRef} variant={'ghost'} onClick={onOpen}>
@@ -43,26 +41,25 @@ function Mobile() {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader as={Flex} direction={'row'} gap={3} align={'center'} fontSize={'3xl'}>
+            <DrawerHeader as={Flex} direction={'row'} gap={3} align={'center'} fontSize={'xl'}>
               {user !== null ? (
                 <>
                   <Avatar name={user.name} src={user.avatar} />
-                  <Flex direction={'column'} justify={'space-around'} h={'full'}>
-                    <Text fontSize={'sm'}>{user.username}</Text>
-                    <Text fontSize={'xs'} opacity={'0.7'}>
-                      {user.name}
-                    </Text>
-                  </Flex>
+                  <Text>{user.name}</Text>
                 </>
               ) : (
-                <Heading>Hello</Heading>
+                <Heading>
+                  <Logo />
+                </Heading>
               )}
             </DrawerHeader>
             <DrawerBody fontSize={'lg'}>
               <Stack divider={<StackDivider />}>
                 <Stack>
                   {navLinks.map(({ path, title, icon }) => (
-                    <IconLink key={path} to={path} icon={icon} title={title} />
+                    <IconLink key={path} to={path} icon={icon}>
+                      <Text>{title}</Text>
+                    </IconLink>
                   ))}
                 </Stack>
 
@@ -70,22 +67,21 @@ function Mobile() {
                   <>
                     <Stack>
                       {userLinks.map(({ path, title, icon }) => (
-                        <IconLink key={path} to={path} icon={icon} title={title} />
+                        <IconLink key={path} to={path} icon={icon}>
+                          <Text>{title}</Text>
+                        </IconLink>
                       ))}
                     </Stack>
                     <SignOutButton mt={4} />
                   </>
                 ) : (
                   <>
-                    <IconLink
-                      key={signInLink.path}
-                      to={signInLink.path}
-                      icon={signInLink.icon}
-                      title={signInLink.title}
-                    />
+                    <IconLink key={authLinks.signIn.path} to={authLinks.signIn.path} icon={authLinks.signIn.icon}>
+                      {authLinks.signIn.title}
+                    </IconLink>
 
-                    <Button mt={4} as={Link} to={signUpLink.path} variant={'solid'} colorScheme='purple'>
-                      {signUpLink.title}
+                    <Button mt={4} as={Link} to={authLinks.signUp.path} variant={'solid'}>
+                      {authLinks.signUp.title}
                     </Button>
                   </>
                 )}

@@ -1,5 +1,17 @@
 import Link from '@ui/Link'
-import { Avatar, Box, Button, Flex, Grid, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from '@chakra-ui/react'
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Text,
+  Grid,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+} from '@chakra-ui/react'
 import { authStore } from '@stores/authStore'
 import { navLinks, userLinks, authLinks } from '../../config/links'
 import Logo from '../Logo'
@@ -31,7 +43,9 @@ function Desktop() {
             <MenuList>
               {userLinks.map(({ path, title, icon }) => (
                 <MenuItem key={path}>
-                  <IconLink w={'full'} to={path} fontSize={'lg'} icon={icon} title={title} />
+                  <IconLink w={'full'} to={path} fontSize={'lg'} icon={icon}>
+                    <Text>{title}</Text>
+                  </IconLink>
                 </MenuItem>
               ))}
               <MenuDivider />
