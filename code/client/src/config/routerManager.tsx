@@ -7,10 +7,12 @@ import ErrorPage from '@/pages/Error'
 import Home from '@/pages/Home'
 import Login from '@/pages/auth/Login'
 import Register from '@/pages/auth/Register'
+import links from '@/common/links'
+import Profile from '@/pages/Profile'
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: links.home,
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
@@ -18,15 +20,19 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      {
+        path: links.profile,
+        element: <Profile />,
+      },
     ],
   },
   {
-    path: '/sign-in',
+    path: links.login,
     element: <Login />,
     errorElement: <ErrorPage />,
   },
   {
-    path: '/sign-up',
+    path: links.register,
     element: <Register />,
     errorElement: <ErrorPage />,
   },
