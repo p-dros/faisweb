@@ -1,5 +1,5 @@
-import { signOut } from '@/lib/auth'
 import { Button, Flex, Icon, Text } from '@chakra-ui/react'
+import { signOut } from '@lib/auth'
 import { ComponentProps } from 'react'
 import { FaDoorOpen } from 'react-icons/fa6'
 

@@ -1,4 +1,4 @@
-import { UsersResponse } from '@/types/pocketbase-types'
+import { UsersResponse } from '@/common/types/pocketbase-types'
 import { pb } from './pocketbase'
 
 interface SignInParams {
