@@ -50,8 +50,8 @@ function Desktop({ navLinks, userLinks }: Props) {
             <MenuList>
               {userLinks.map(({ path, title, icon }) => (
                 <MenuItem key={path}>
-                  <Link to={path}>
-                    <Pair w={'full'} fontSize={'lg'} icon={icon}>
+                  <Link to={path} w={'full'}>
+                    <Pair fontSize={'lg'} icon={icon}>
                       <Text>{title}</Text>
                     </Pair>
                   </Link>
