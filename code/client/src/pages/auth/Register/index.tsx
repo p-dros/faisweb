@@ -9,7 +9,7 @@ import Form from '../components/Form'
 
 import links from '@/common/links'
 import * as yup from 'yup'
-import Layout from './components/Layout'
+import Wrapper from './components/Wrapper'
 
 const schema = yup.object({
   email: yup.string().required('Email is required').email('Invalid Email'),
@@ -67,7 +67,7 @@ function Register() {
   }
 
   return (
-    <Layout>
+    <Wrapper>
       <Form.Wrapper>
         <Form title='Create a free account' onSubmit={handleSubmit(onSubmit)} isSubmitting={isSubmitting}>
           <FormControl isInvalid={!!errors.email}>
@@ -106,7 +106,7 @@ function Register() {
           </Text>
         </Form.Footer>
       </Form.Wrapper>
-    </Layout>
+    </Wrapper>
   )
 }
 

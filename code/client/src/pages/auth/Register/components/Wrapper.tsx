@@ -9,7 +9,7 @@ interface Props {
   children: ReactNode
 }
 
-function Layout({ children }: Props) {
+function Wrapper({ children }: Props) {
   return (
     <Grid minH={'100vh'} templateColumns={{ base: '1fr', lg: '3fr 2fr' }}>
       <Center h={'full'} p={10}>
@@ -34,4 +34,4 @@ function Layout({ children }: Props) {
   )
 }
 
-export default Layout
+export default Wrapper
