@@ -1,5 +1,6 @@
 import links from '@/common/links'
 import { authStore } from '@/stores/authStore'
+import { Box } from '@chakra-ui/react'
 import Navigation from '@components/Navigation'
 import { Navigate, Outlet } from 'react-router-dom'
 
@@ -12,7 +13,9 @@ function Layout() {
   return (
     <>
       <Navigation />
-      <Outlet />
+      <Box mt={24} px={4}>
+        <Outlet />
+      </Box>
     </>
   )
 }

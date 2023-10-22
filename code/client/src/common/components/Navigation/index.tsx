@@ -13,7 +13,8 @@ function Navigation() {
       bgColor={'white'}
       borderColor={'gray.200'}
       borderWidth={1}
-      w='full'>
+      w='full'
+      zIndex={'tooltip'}>
       <Show below={'md'}>
         <Mobile />
       </Show>

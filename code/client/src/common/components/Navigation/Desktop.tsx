@@ -1,10 +1,10 @@
 import links from '@/common/links'
 import {
   Avatar,
-  Box,
   Button,
   Flex,
   Grid,
+  GridItem,
   Menu,
   MenuButton,
   MenuDivider,
@@ -16,26 +16,30 @@ import Link from '@components/Link'
 import Logo from '@components/Logo'
 import { authStore } from '@stores/authStore'
 
-import { navLinks, userLinks } from './navLinks'
 import { signOut } from '@/common/lib/auth'
+import { navLinks, userLinks } from './navLinks'
 
 function Desktop() {
   const user = authStore((state) => state.currentUser)
 
   return (
     <Grid gap={8} alignItems={'center'} templateColumns={'1fr 2fr 1fr'} w={'full'} maxW={'container.xl'}>
-      <Logo />
-      <Flex justifySelf={'center'} as={'nav'} gap={8}>
-        {navLinks.map(({ path, title, icon }) => (
-          <Button variant={'ghost'} as={Link} key={path} to={path} fontSize={'lg'}>
-            <Flex align={'center'} gap={2}>
-              {icon}
-              <Text>{title}</Text>
-            </Flex>
-          </Button>
-        ))}
-      </Flex>
-      <Box justifySelf={'end'}>
+      <GridItem>
+        <Logo />
+      </GridItem>
+      <GridItem justifySelf={'center'}>
+        <Flex as={'nav'} gap={8}>
+          {navLinks.map(({ path, title, icon }) => (
+            <Button variant={'ghost'} as={Link} key={path} to={path} fontSize={'lg'}>
+              <Flex align={'center'} gap={2}>
+                {icon}
+                <Text>{title}</Text>
+              </Flex>
+            </Button>
+          ))}
+        </Flex>
+      </GridItem>
+      <GridItem justifySelf={'end'}>
         {user ? (
           <Menu>
             <MenuButton>
@@ -51,7 +55,13 @@ function Desktop() {
               ))}
               <MenuDivider />
               <MenuItem>
-                <Button fontSize={'lg'} w='full' onClick={() => signOut()} variant={'unstyled'} as={Link}>
+                <Button
+                  fontSize={'lg'}
+                  w='full'
+                  textAlign={'center'}
+                  onClick={() => signOut()}
+                  variant={'unstyled'}
+                  as={Link}>
                   Sign Out
                 </Button>
               </MenuItem>
@@ -68,7 +78,7 @@ function Desktop() {
             </Button>
           </Flex>
         )}
-      </Box>
+      </GridItem>
     </Grid>
   )
 }

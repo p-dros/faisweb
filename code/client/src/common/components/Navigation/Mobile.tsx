@@ -27,7 +27,7 @@ import { signOut } from '@/common/lib/auth'
 import { useLocation } from 'react-router-dom'
 
 function Mobile() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onClose, onToggle } = useDisclosure()
   const triggerRef = useRef<HTMLButtonElement>(null)
 
   const user = authStore((state) => state.currentUser)
@@ -40,7 +40,7 @@ function Mobile() {
     <Flex align={'center'} justify={'space-between'} w={'full'} px={2}>
       <Logo />
       <Box as='nav'>
-        <Button aria-label='Menu' ref={triggerRef} variant={'ghost'} onClick={onOpen} p={0} m={0}>
+        <Button aria-label='Menu' ref={triggerRef} variant={'ghost'} onClick={onToggle} p={0} m={0}>
           <HamburgerIcon boxSize={8} />
         </Button>
         <Drawer isOpen={isOpen} placement='right' size={'full'} onClose={onClose} finalFocusRef={triggerRef}>
