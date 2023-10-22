@@ -23,7 +23,7 @@ import { useEffect, useRef } from 'react'
 
 import { navLinks } from './navLinks'
 
-import { signOut } from '@/common/lib/auth'
+import { signOut } from '@/common/pocketbase/auth'
 import { useLocation } from 'react-router-dom'
 
 function Mobile() {

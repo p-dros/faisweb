@@ -1,5 +1,5 @@
 import { UsersResponse } from '@/types/pocketbase-types'
-import { pb } from './pocketbase'
+import { pb } from '.'
 
 interface SignInParams {
   email: string

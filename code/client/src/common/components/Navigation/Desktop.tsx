@@ -16,7 +16,7 @@ import Link from '@components/Link'
 import Logo from '@components/Logo'
 import { authStore } from '@stores/authStore'
 
-import { signOut } from '@/common/lib/auth'
+import { signOut } from '@/common/pocketbase/auth'
 import { navLinks, userLinks } from './navLinks'
 
 function Desktop() {

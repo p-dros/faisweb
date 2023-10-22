@@ -1,6 +1,6 @@
 import Form from '../components/Form'
 import Link from '@components/Link'
-import { signIn } from '@/common/lib/auth'
+import { signIn } from '@/common/pocketbase/auth'
 import { authStore } from '@stores/authStore'
 import { Center, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 import { yupResolver } from '@hookform/resolvers/yup'

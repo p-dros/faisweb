@@ -1,6 +1,6 @@
 import { UsersResponse } from '@/types/pocketbase-types'
 import { create } from 'zustand'
-import { pb } from '@lib/pocketbase'
+import { pb } from '@/common/pocketbase'
 
 interface AuthStore {
   currentUser: UsersResponse | null

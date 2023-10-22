@@ -1,7 +1,7 @@
 import { Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react'
 import Link from '@components/Link'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { createUser } from '@lib/auth'
+import { createUser } from '@/common/pocketbase/auth'
 import { ClientResponseError } from 'pocketbase'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
