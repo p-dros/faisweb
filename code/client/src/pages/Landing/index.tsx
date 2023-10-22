@@ -1,4 +1,4 @@
-import { Box, Button, Center, Heading, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Center, Heading, Text, VStack, Flex } from '@chakra-ui/react'
 import GridBackground from '@components/GridBackground'
 import Link from '@components/Link'
 import links from '@/common/links'
@@ -25,9 +25,15 @@ function Landing() {
           <Text fontSize={'xl'} color={'gray.700'}>
             Explore, Save, and Connect with the Finest Courses in <HighlightText>FAIS</HighlightText> Department
           </Text>
-          <Button as={Link} to={links.register}>
-            Get Started
-          </Button>
+          <Flex gap={4} align={'center'}>
+            <Button as={Link} to={links.register}>
+              Get Started
+            </Button>
+
+            <Button as={Link} to={links.login}>
+              Sign In
+            </Button>
+          </Flex>
         </VStack>
       </Box>
     </Center>
