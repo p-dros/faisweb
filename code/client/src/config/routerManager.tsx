@@ -12,6 +12,7 @@ import Courses from '@/pages/protected/Courses'
 import Dashboard from '@/pages/protected/Dashboard'
 
 import links from '@/common/links'
+import { getCourses } from '@/common/pocketbase/courses'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       {
         path: links.courses,
         element: <Courses />,
+        loader: async () => await getCourses(),
       },
     ],
   },
