@@ -51,7 +51,7 @@ function Desktop() {
               ))}
               <MenuDivider />
               <MenuItem>
-                <Button fontSize={'lg'} w='full' onClick={() => signOut()} variant={'ghost'} as={Link}>
+                <Button fontSize={'lg'} w='full' onClick={() => signOut()} variant={'unstyled'} as={Link}>
                   Sign Out
                 </Button>
               </MenuItem>
