@@ -15,17 +15,11 @@ import {
 import Link from '@components/Link'
 import Logo from '@components/Logo'
 import { authStore } from '@stores/authStore'
-import { SignOutButton } from '../buttons'
-import Pair from './Pair'
 
-import type { NavLink } from '.'
+import { navLinks, userLinks } from './navLinks'
+import { signOut } from '@/common/lib/auth'
 
-interface Props {
-  navLinks: NavLink[]
-  userLinks: NavLink[]
-}
-
-function Desktop({ navLinks, userLinks }: Props) {
+function Desktop() {
   const user = authStore((state) => state.currentUser)
 
   return (
@@ -34,10 +28,10 @@ function Desktop({ navLinks, userLinks }: Props) {
       <Flex justifySelf={'center'} as={'nav'} gap={8}>
         {navLinks.map(({ path, title, icon }) => (
           <Button variant={'ghost'} as={Link} key={path} to={path} fontSize={'lg'}>
-            <Pair>
+            <Flex align={'center'} gap={2}>
               {icon}
-              {title}
-            </Pair>
+              <Text>{title}</Text>
+            </Flex>
           </Button>
         ))}
       </Flex>
@@ -47,19 +41,19 @@ function Desktop({ navLinks, userLinks }: Props) {
             <MenuButton>
               <Avatar name={user.name} src={user.avatar} />
             </MenuButton>
-            <MenuList>
-              {userLinks.map(({ path, title, icon }) => (
-                <MenuItem key={path}>
+            <MenuList fontSize={'lg'}>
+              {userLinks.map(({ path, title }) => (
+                <MenuItem key={path} textAlign={'center'} fontWeight={500}>
                   <Link to={path} w={'full'}>
-                    <Pair fontSize={'lg'} icon={icon}>
-                      <Text>{title}</Text>
-                    </Pair>
+                    {title}
                   </Link>
                 </MenuItem>
               ))}
               <MenuDivider />
               <MenuItem>
-                <SignOutButton variant={'ghost'} as={Link} />
+                <Button fontSize={'lg'} w='full' onClick={() => signOut()} variant={'ghost'} as={Link}>
+                  Sign Out
+                </Button>
               </MenuItem>
             </MenuList>
           </Menu>

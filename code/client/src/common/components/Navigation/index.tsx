@@ -1,49 +1,13 @@
-import { Center, Icon, Show } from '@chakra-ui/react'
-import { ReactNode } from 'react'
+import { Center, Show } from '@chakra-ui/react'
 import Desktop from './Desktop'
 import Mobile from './Mobile'
-
-import { FaBook, FaChalkboardTeacher } from 'react-icons/fa'
-import { FaRankingStar, FaUser } from 'react-icons/fa6'
-import links from '@/common/links'
-
-export interface NavLink {
-  title: string
-  path: string
-  icon?: ReactNode
-}
-
-const navLinks: NavLink[] = [
-  {
-    title: 'Courses',
-    path: links.courses,
-    icon: <Icon as={FaBook} />,
-  },
-  {
-    title: 'Lecturers',
-    path: links.lecturers,
-    icon: <Icon as={FaChalkboardTeacher} />,
-  },
-  {
-    title: 'Rankings',
-    path: links.ranking,
-    icon: <Icon as={FaRankingStar} />,
-  },
-]
-
-const userLinks: NavLink[] = [
-  {
-    title: 'Profile',
-    path: '/profile',
-    icon: <Icon as={FaUser} />,
-  },
-]
 
 function Navigation() {
   return (
     <Center
       position={'fixed'}
-      paddingBlock={2}
+      px={6}
+      py={4}
       top={0}
       as='header'
       bgColor={'white'}
@@ -51,10 +15,10 @@ function Navigation() {
       borderWidth={1}
       w='full'>
       <Show below={'md'}>
-        <Mobile navLinks={navLinks} userLinks={userLinks} />
+        <Mobile />
       </Show>
       <Show above={'md'}>
-        <Desktop navLinks={navLinks} userLinks={userLinks} />
+        <Desktop />
       </Show>
     </Center>
   )
