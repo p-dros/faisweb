@@ -1,8 +1,7 @@
-import Form from '@/components/auth/Form'
-import Link from '@/components/ui/Link'
-import { authLinks } from '@/config/links'
-import { signIn } from '@/lib/auth'
-import { authStore } from '@/stores/authStore'
+import Form from '../components/Form'
+import Link from '@components/Link'
+import { signIn } from '@/common/lib/auth'
+import { authStore } from '@stores/authStore'
 import { Center, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ClientResponseError } from 'pocketbase'
@@ -18,7 +17,7 @@ const schema = yup.object({
 
 type Inputs = yup.InferType<typeof schema>
 
-function SignIn() {
+function Login() {
   const user = authStore((state) => state.currentUser)
 
   const {
@@ -67,7 +66,7 @@ function SignIn() {
   }
 
   return (
-    <Center minH={'100vh'} p={6}>
+    <Center minH={'100vh'} p={10}>
       <Form.Wrapper>
         <Form title='Sign in to FAISWeb' onSubmit={handleSubmit(onSubmit)} isSubmitting={isSubmitting}>
           <FormControl isInvalid={!!errors.email}>
@@ -83,7 +82,7 @@ function SignIn() {
         </Form>
         <Form.Footer>
           Don&apos;t have an account?{' '}
-          <Link fontWeight={'bold'} color={'black'} to={authLinks.signUp.path}>
+          <Link fontWeight={'bold'} color={'black'} to={'/sign-up'}>
             Create a free account
           </Link>
         </Form.Footer>
@@ -92,4 +91,4 @@ function SignIn() {
   )
 }
 
-export default SignIn
+export default Login

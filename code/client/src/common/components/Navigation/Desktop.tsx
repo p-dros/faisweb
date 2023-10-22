@@ -1,24 +1,31 @@
-import Link from '@ui/Link'
+import links from '@/common/links'
 import {
   Avatar,
   Box,
   Button,
   Flex,
-  Text,
   Grid,
   Menu,
   MenuButton,
   MenuDivider,
   MenuItem,
   MenuList,
+  Text,
 } from '@chakra-ui/react'
+import Link from '@components/Link'
+import Logo from '@components/Logo'
 import { authStore } from '@stores/authStore'
-import { navLinks, userLinks, authLinks } from '../../config/links'
-import Logo from '../Logo'
-import IconLink from './IconLink'
-import { SignOutButton } from '../auth/buttons'
+import { SignOutButton } from '../buttons'
+import Pair from './Pair'
 
-function Desktop() {
+import type { NavLink } from '.'
+
+interface Props {
+  navLinks: NavLink[]
+  userLinks: NavLink[]
+}
+
+function Desktop({ navLinks, userLinks }: Props) {
   const user = authStore((state) => state.currentUser)
 
   return (
@@ -27,10 +34,10 @@ function Desktop() {
       <Flex justifySelf={'center'} as={'nav'} gap={8}>
         {navLinks.map(({ path, title, icon }) => (
           <Button variant={'ghost'} as={Link} key={path} to={path} fontSize={'lg'}>
-            <Flex gap={2} align={'center'}>
+            <Pair>
               {icon}
               {title}
-            </Flex>
+            </Pair>
           </Button>
         ))}
       </Flex>
@@ -43,9 +50,11 @@ function Desktop() {
             <MenuList>
               {userLinks.map(({ path, title, icon }) => (
                 <MenuItem key={path}>
-                  <IconLink w={'full'} to={path} fontSize={'lg'} icon={icon}>
-                    <Text>{title}</Text>
-                  </IconLink>
+                  <Link to={path} w={'full'}>
+                    <Pair fontSize={'lg'} icon={icon}>
+                      <Text>{title}</Text>
+                    </Pair>
+                  </Link>
                 </MenuItem>
               ))}
               <MenuDivider />
@@ -56,12 +65,12 @@ function Desktop() {
           </Menu>
         ) : (
           <Flex gap={4}>
-            <Button as={Link} to={authLinks.signIn.path} variant={'ghost'}>
-              {authLinks.signIn.title}
+            <Button as={Link} to={links.login} variant={'ghost'}>
+              Sign In
             </Button>
 
-            <Button as={Link} to={authLinks.signUp.path} variant={'outline'}>
-              {authLinks.signUp.title}
+            <Button as={Link} to={links.register} variant={'outline'}>
+              Sign Up
             </Button>
           </Flex>
         )}

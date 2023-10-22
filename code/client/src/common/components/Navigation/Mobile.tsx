@@ -1,4 +1,4 @@
-import Logo from '@/components/Logo'
+import Logo from '@components/Logo'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Avatar,
@@ -18,13 +18,20 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { authStore } from '@stores/authStore'
-import Link from '@ui/Link'
+import Link from '@components/Link'
 import { useRef } from 'react'
-import { authLinks, navLinks, userLinks } from '../../config/links'
-import { SignOutButton } from '../auth/buttons'
-import IconLink from './IconLink'
+import links from '@/common/links'
+import { SignOutButton } from '@components/buttons'
+import Pair from './Pair'
 
-function Mobile() {
+import type { NavLink } from '.'
+
+interface Props {
+  navLinks: NavLink[]
+  userLinks: NavLink[]
+}
+
+function Mobile({ navLinks, userLinks }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const triggerRef = useRef<HTMLButtonElement>(null)
 
@@ -57,9 +64,9 @@ function Mobile() {
               <Stack divider={<StackDivider />}>
                 <Stack>
                   {navLinks.map(({ path, title, icon }) => (
-                    <IconLink key={path} to={path} icon={icon}>
+                    <Pair key={path} to={path} icon={icon}>
                       <Text>{title}</Text>
-                    </IconLink>
+                    </Pair>
                   ))}
                 </Stack>
 
@@ -67,22 +74,23 @@ function Mobile() {
                   <>
                     <Stack>
                       {userLinks.map(({ path, title, icon }) => (
-                        <IconLink key={path} to={path} icon={icon}>
+                        <Pair key={path} to={path} icon={icon}>
                           <Text>{title}</Text>
-                        </IconLink>
+                        </Pair>
                       ))}
                     </Stack>
                     <SignOutButton mt={4} />
                   </>
                 ) : (
                   <>
-                    <IconLink key={authLinks.signIn.path} to={authLinks.signIn.path} icon={authLinks.signIn.icon}>
-                      {authLinks.signIn.title}
-                    </IconLink>
-
-                    <Button mt={4} as={Link} to={authLinks.signUp.path} variant={'solid'}>
-                      {authLinks.signUp.title}
-                    </Button>
+                    {[
+                      { path: links.login, title: 'Sign In' },
+                      { path: links.register, title: 'Sign Up' },
+                    ].map(({ path, title }) => (
+                      <Button key={path} as={Link} to={path} my={2}>
+                        {title}
+                      </Button>
+                    ))}
                   </>
                 )}
               </Stack>
