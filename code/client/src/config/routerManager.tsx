@@ -1,14 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import Layout from '@/pages/Layout'
-
 import ErrorPage from '@/pages/Error'
 
 import Home from '@/pages/Home'
 import Login from '@/pages/auth/Login'
 import Register from '@/pages/auth/Register'
-import links from '@/common/links'
 import Profile from '@/pages/Profile'
+import Courses from '@/pages/Courses'
+
+import links from '@/common/links'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: links.profile,
         element: <Profile />,
+      },
+      {
+        path: links.courses,
+        element: <Courses />,
       },
     ],
   },
