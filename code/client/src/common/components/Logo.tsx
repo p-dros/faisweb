@@ -7,7 +7,7 @@ type Props = { size?: number } & Omit<ComponentProps<typeof Link>, 'to'>
 
 export default function Logo({ size, ...rest }: Props) {
   return (
-    <Link {...rest} to={links.home} p={0}>
+    <Link {...rest} to={links.root} p={0}>
       <Image src='/brand/logo.png' alt='FAISWeb' w={`${size ?? 120}px`} objectFit={'cover'} />
     </Link>
   )

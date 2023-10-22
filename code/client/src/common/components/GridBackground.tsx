@@ -19,7 +19,7 @@ const variants: Variants = {
 
 export default function GridBackground({ variant, opacity }: Props) {
   return (
-    <AbsoluteCenter bgImage={'/grid.svg'} bgSize={'cover'} zIndex={-1} h={'full'} w='full'>
+    <AbsoluteCenter bgImage={'/svg/grid.svg'} bgSize={'cover'} zIndex={-1} h={'full'} w='full'>
       <Box
         sx={{
           backgroundColor: 'purple.200',

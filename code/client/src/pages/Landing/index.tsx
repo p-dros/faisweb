@@ -3,8 +3,16 @@ import GridBackground from '@components/GridBackground'
 import Link from '@components/Link'
 import links from '@/common/links'
 import HighlightText from './components/HighlightText'
+import { authStore } from '@stores/authStore'
+import { Navigate } from 'react-router-dom'
 
-function Home() {
+function Landing() {
+  const user = authStore((state) => state.currentUser)
+
+  if (user) {
+    return <Navigate to={links.dashboard} />
+  }
+
   return (
     <Center minH={'100vh'} px={4}>
       <GridBackground variant='radial' opacity={0.35} />
@@ -26,4 +34,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Landing

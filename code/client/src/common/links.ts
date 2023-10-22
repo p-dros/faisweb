@@ -1,5 +1,6 @@
 const links = {
-  home: '/',
+  root: '/',
+  dashboard: '/dashboard',
   courses: '/courses',
   lecturers: '/lecturers',
   ranking: '/ranking',
