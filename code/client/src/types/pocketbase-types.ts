@@ -32,10 +32,10 @@ export type AuthSystemFields<T = never> = {
 // Record types for each collection
 
 export interface CoursesRecord {
-  description?: string
+  description: string
   ects: number
   field?: string
-  isFaculty?: boolean
+  isOptional?: boolean
   name: string
   semester: number
 }
@@ -60,3 +60,6 @@ export interface CollectionResponses {
   courses: CoursesResponse
   users: UsersResponse
 }
+
+// Type for usage with type asserted PocketBase instance
+// https://github.com/pocketbase/js-sdk#specify-typescript-definitions
