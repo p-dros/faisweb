@@ -10,7 +10,7 @@ function Landing() {
   const user = authStore((state) => state.currentUser)
 
   if (user) {
-    return <Navigate to={links.dashboard} />
+    return <Navigate to={links.courses} />
   }
 
   return (

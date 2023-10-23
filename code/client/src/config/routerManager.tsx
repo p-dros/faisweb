@@ -9,7 +9,6 @@ import Register from '@/pages/auth/Register'
 import Layout from '@/pages/protected/Layout'
 import Profile from '@/pages/protected/Profile'
 import Courses from '@/pages/protected/Courses'
-import Dashboard from '@/pages/protected/Dashboard'
 
 import links from '@/common/links'
 import { getCourses } from '@/common/pocketbase/courses'
@@ -24,10 +23,6 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: links.dashboard,
-        element: <Dashboard />,
-      },
       {
         path: links.profile,
         element: <Profile />,
