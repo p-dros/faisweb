@@ -28,7 +28,7 @@
 - dodawanie komentarzy przez osoby niezalogowane na platformie
 - usuwanie komentarzy przez osoby nieposiadające statusu administratora
 - nieodpowiedni format
-  - dodanie pustego komentarze
+  - dodanie pustego komentarza
   - dodanie zbyt długiego komentarza
   - dodanie komentarza niepoprawnego politycznie
 - dodawanie zbyt dużej liczby komentarzy
@@ -45,7 +45,7 @@
 
 ## Mechanizmy wsparcia
 
-- zgłaszanie komentarzy przez jedną osobę bez uzasadnienia
+- zgłaszanie komentarzy przez osobę bez uzasadnienia
 
 ## Ogólne
 
