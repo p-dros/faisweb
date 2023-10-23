@@ -72,8 +72,11 @@ Application to rate all courses within FAIS department.
 
 ### Built With
 
-- [![Next][Next.js]][Next-url]
 - [![React][React.js]][React-url]
+- [![Vite][Vite]][Vite-url]
+- [![Pocketbase][Pocketbase]][Pocketbase-url]
+- [![Typescript][Typescript]][Typescript-url]
+- [![Chakra-UI][Chakra]][Chakra-url]
 
 <!-- LICENSE -->
 
@@ -101,7 +104,13 @@ Project Link: [https://github.com/p-dros/faisweb](https://github.com/p-dros/fais
 [license-shield]: https://img.shields.io/github/license/p-dros/faisweb.svg?style=for-the-badge
 [license-url]: https://github.com/p-dros/faisweb/blob/master/LICENSE.txt
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React.js]: https://img.shields.io/badge/React-23272F?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[Vite]: https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFC820
+[Vite-url]: https://vitejs.dev/
+[Pocketbase]: https://img.shields.io/badge/Pocketbase-20232A?style=for-the-badge&logo=pocketbase&logoColor=B8DBE4
+[Pocketbase-url]: https://pocketbase.io/
+[Typescript]: https://img.shields.io/badge/Typescript-3178C5?style=for-the-badge&logo=typescript&logoColor=ffffff
+[Typescript-url]: https://www.typescriptlang.org/
+[Chakra]: https://img.shields.io/badge/Chakra_UI-1A202C?style=for-the-badge&logo=chakraui&logoColor=4FD1C5
+[Chakra-url]: https://chakra-ui.com/
