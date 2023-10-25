@@ -14,33 +14,17 @@ interface CreateUserParams {
 }
 
 export const signIn = async ({ email, password }: SignInParams) => {
-  try {
-    const user = await pb.collection('users').authWithPassword<UsersResponse>(email, password)
-
-    return { user, error: null }
-  } catch (error) {
-    return {
-      user: null,
-      error,
-    }
-  }
+  return await pb.collection('users').authWithPassword<UsersResponse>(email, password)
 }
 
 export const createUser = async ({ email, password, passwordConfirm, name }: CreateUserParams) => {
-  try {
-    const user = await pb.collection('users').create({
-      email,
-      password,
-      passwordConfirm,
-      name,
-    })
-    return { user, error: null }
-  } catch (error) {
-    return {
-      user: null,
-      error,
-    }
-  }
+  const user = await pb.collection('users').create({
+    email,
+    password,
+    passwordConfirm,
+    name,
+  })
+  return { user, error: null }
 }
 
 export const signOut = () => pb.authStore.clear()
