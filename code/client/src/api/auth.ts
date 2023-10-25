@@ -18,13 +18,13 @@ export const signIn = async ({ email, password }: SignInParams) => {
 }
 
 export const createUser = async ({ email, password, passwordConfirm, name }: CreateUserParams) => {
-  const user = await pb.collection('users').create({
+  return await pb.collection('users').create({
     email,
     password,
     passwordConfirm,
     name,
+    role: 'student',
   })
-  return { user, error: null }
 }
 
 export const signOut = () => pb.authStore.clear()

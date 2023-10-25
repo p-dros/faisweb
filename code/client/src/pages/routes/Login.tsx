@@ -7,6 +7,7 @@ import { authStore } from '@stores/authStore'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
 import { loginSchema, LoginInputs } from '@/components/Login/loginValidations'
+import { ClientResponseError } from 'pocketbase'
 
 function Login() {
   const user = authStore((state) => state.currentUser)
@@ -16,7 +17,16 @@ function Login() {
   })
 
   const onSubmit: SubmitHandler<LoginInputs> = async ({ email, password }) => {
-    await signIn({ email, password })
+    try {
+      await signIn({ email, password })
+    } catch (error) {
+      if (error instanceof ClientResponseError) {
+        methods.setError('root', {
+          type: 'manual',
+          message: error.response?.message || 'Failed to authenticate',
+        })
+      }
+    }
   }
 
   if (user) {

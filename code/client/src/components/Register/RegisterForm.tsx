@@ -18,7 +18,11 @@ function RegisterForm({ onSubmit }: RegisterFormProps) {
 
   return (
     <Form.Wrapper>
-      <Form title='Create a free account' onSubmit={handleSubmit(onSubmit)} isSubmitting={isSubmitting}>
+      <Form
+        title='Create a free account'
+        onSubmit={handleSubmit(onSubmit)}
+        isSubmitting={isSubmitting}
+        errorMessage={errors.root?.message}>
         <FormControl isInvalid={!!errors.email}>
           <FormLabel>Email</FormLabel>
           <Input {...register('email')} />

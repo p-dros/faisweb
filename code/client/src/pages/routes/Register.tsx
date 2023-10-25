@@ -8,6 +8,7 @@ import { RegisterInputs, registerSchema } from '@/components/Register/RegisterVa
 import links from '@/config/links'
 import { authStore } from '@/stores/authStore'
 import Wrapper from '../../components/Register/Wrapper'
+import { ClientResponseError } from 'pocketbase'
 
 function Register() {
   const user = authStore((state) => state.currentUser)
@@ -18,17 +19,17 @@ function Register() {
     resolver: yupResolver(registerSchema),
   })
 
-  const { setError } = methods
-
   const onSubmit: SubmitHandler<RegisterInputs> = async ({ email, name, password, passwordConfirm }) => {
     try {
       await createUser({ email, name, password, passwordConfirm })
       navigate(links.login)
     } catch (error) {
-      setError('email', {
-        type: 'manual',
-        message: 'Email already exists',
-      })
+      if (error instanceof ClientResponseError) {
+        methods.setError('root', {
+          type: 'manual',
+          message: error.response?.message || 'Failed to create user',
+        })
+      }
     }
   }
 

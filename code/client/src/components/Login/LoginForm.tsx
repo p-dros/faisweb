@@ -19,7 +19,11 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
 
   return (
     <Form.Wrapper>
-      <Form title='Sign in to FAISWeb' onSubmit={handleSubmit(onSubmit)} isSubmitting={isSubmitting}>
+      <Form
+        title='Sign in to FAISWeb'
+        onSubmit={handleSubmit(onSubmit)}
+        isSubmitting={isSubmitting}
+        errorMessage={errors.root?.message}>
         <FormControl isInvalid={!!errors.email}>
           <FormLabel>Email</FormLabel>
           <Input {...register('email')} />
