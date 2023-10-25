@@ -1,6 +1,6 @@
 import { Box, Button, Heading, VStack } from '@chakra-ui/react'
 import { ComponentProps, ReactNode } from 'react'
-import Logo from '../../../common/components/Logo'
+import Logo from '../ui/Logo'
 
 interface FormWrapperProps {
   children: ReactNode

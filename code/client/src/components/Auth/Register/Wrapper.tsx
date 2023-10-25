@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { Center, Grid, Icon, Text, VStack } from '@chakra-ui/react'
 import { FaQuoteLeft } from 'react-icons/fa6'
 
-import GridBackground from '@components/GridBackground'
+import GridBackground from '@ui/GridBackground'
 
 interface Props {
   children: ReactNode

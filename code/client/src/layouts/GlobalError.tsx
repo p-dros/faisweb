@@ -2,9 +2,8 @@ import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
 
 import { Center, Flex, Box, Text, Heading } from '@chakra-ui/react'
 
-function ErrorPage() {
+function GlobalError() {
   const error = useRouteError()
-  console.error(error)
   let errorMessage: string
 
   if (isRouteErrorResponse(error)) {
@@ -32,4 +31,4 @@ function ErrorPage() {
   )
 }
 
-export default ErrorPage
+export default GlobalError

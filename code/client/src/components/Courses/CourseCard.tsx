@@ -1,5 +1,5 @@
 import { CoursesResponse } from '@/types/pocketbase-types'
-import { Badge, Card, CardBody, CardHeader, Heading, Text } from '@chakra-ui/react'
+import { Badge, Card, CardBody, CardHeader, Heading, Text, Skeleton } from '@chakra-ui/react'
 
 interface Props {
   course: CoursesResponse
@@ -25,5 +25,11 @@ function CourseCard({ course }: Props) {
     </Card>
   )
 }
+
+function CardSkeleton() {
+  return <Skeleton h={'full'} w={'full'}></Skeleton>
+}
+
+CourseCard.Skeleton = CardSkeleton
 
 export default CourseCard

@@ -1,8 +1,8 @@
 import { Box, Button, Center, Heading, Text, VStack, Flex } from '@chakra-ui/react'
-import GridBackground from '@components/GridBackground'
-import Link from '@components/Link'
-import links from '@/common/links'
-import HighlightText from './components/HighlightText'
+import GridBackground from '@ui/GridBackground'
+import Link from '@ui/Link'
+import links from '@/config/links'
+import HighlightText from '../components/ui/HighlightText'
 import { authStore } from '@stores/authStore'
 import { Navigate } from 'react-router-dom'
 

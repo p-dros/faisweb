@@ -1,15 +1,15 @@
 import { Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react'
-import Link from '@components/Link'
+import Link from '@ui/Link'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { createUser } from '@/common/pocketbase/auth'
+import { createUser } from '@/api/auth'
 import { ClientResponseError } from 'pocketbase'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import Form from '../components/Form'
+import Form from '../components/Auth/Form'
 
-import links from '@/common/links'
+import links from '@/config/links'
 import * as yup from 'yup'
-import Wrapper from './components/Wrapper'
+import Wrapper from '../components/Auth/Register/Wrapper'
 
 const schema = yup.object({
   email: yup.string().required('Email is required').email('Invalid Email'),

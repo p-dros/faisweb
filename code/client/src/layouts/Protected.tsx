@@ -1,10 +1,10 @@
-import links from '@/common/links'
+import links from '@/config/links'
 import { authStore } from '@/stores/authStore'
 import { Box } from '@chakra-ui/react'
-import Navigation from '@components/Navigation'
+import Navigation from '@/components/ui/Navigation'
 import { Navigate, Outlet } from 'react-router-dom'
 
-function Layout() {
+function Protected() {
   const user = authStore((state) => state.currentUser)
 
   if (!user) {
@@ -20,4 +20,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default Protected

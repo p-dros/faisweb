@@ -1,7 +1,7 @@
 import { Icon } from '@chakra-ui/react'
 import { FaBook, FaChalkboardTeacher } from 'react-icons/fa'
 import { FaRankingStar, FaUser } from 'react-icons/fa6'
-import links from '@/common/links'
+import links from '@/config/links'
 
 export const navLinks = [
   {

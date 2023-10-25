@@ -1,4 +1,4 @@
-import links from '@/common/links'
+import links from '@/config/links'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Avatar,
@@ -16,14 +16,14 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import Link from '@components/Link'
-import Logo from '@components/Logo'
+import Link from '@ui/Link'
+import Logo from '@ui/Logo'
 import { authStore } from '@stores/authStore'
 import { useEffect, useRef } from 'react'
 
 import { navLinks } from './navLinks'
 
-import { signOut } from '@/common/pocketbase/auth'
+import { signOut } from '@/api/auth'
 import { useLocation } from 'react-router-dom'
 
 function Mobile() {

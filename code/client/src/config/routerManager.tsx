@@ -1,48 +1,55 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import Landing from '@/pages/Landing'
-import ErrorPage from '@/pages/Error'
+import GlobalError from '@/layouts/GlobalError'
 
-import Login from '@/pages/auth/Login'
-import Register from '@/pages/auth/Register'
+import Login from '@/pages/Login'
+import Register from '@/pages/Register'
 
-import Layout from '@/pages/protected/Layout'
-import Profile from '@/pages/protected/Profile'
-import Courses from '@/pages/protected/Courses'
+import ProtectedLayout from '@/layouts/Protected'
+import Profile from '@/pages/Profile'
+import Courses from '@/pages/Courses'
+import CoursesError from '@components/Courses/Error'
 
-import links from '@/common/links'
-import { getCourses } from '@/common/pocketbase/courses'
+import links from '@/config/links'
+import Course from '@/pages/Course'
 
 const router = createBrowserRouter([
   {
-    path: links.root,
-    element: <Landing />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    element: <Layout />,
-    errorElement: <ErrorPage />,
+    path: '/',
+    errorElement: <GlobalError />,
     children: [
       {
-        path: links.profile,
-        element: <Profile />,
+        path: links.root,
+        element: <Landing />,
       },
       {
-        path: links.courses,
-        element: <Courses />,
-        loader: async () => await getCourses(),
+        element: <ProtectedLayout />,
+        children: [
+          {
+            path: links.profile,
+            element: <Profile />,
+          },
+          {
+            path: links.courses,
+            element: <Courses />,
+          },
+          {
+            path: `${links.courses}/:courseId`,
+            element: <Course />,
+            errorElement: <CoursesError />,
+          },
+        ],
+      },
+      {
+        path: links.login,
+        element: <Login />,
+      },
+      {
+        path: links.register,
+        element: <Register />,
       },
     ],
-  },
-  {
-    path: links.login,
-    element: <Login />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: links.register,
-    element: <Register />,
-    errorElement: <ErrorPage />,
   },
 ])
 

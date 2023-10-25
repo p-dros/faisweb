@@ -1,7 +1,7 @@
 import { Image } from '@chakra-ui/react'
 import Link from './Link'
 import { ComponentProps } from 'react'
-import links from '../links'
+import links from '@/config/links'
 
 type Props = { size?: number } & Omit<ComponentProps<typeof Link>, 'to'>
 

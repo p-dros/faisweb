@@ -1,4 +1,4 @@
-import links from '@/common/links'
+import links from '@/config/links'
 import {
   Avatar,
   Button,
@@ -12,11 +12,11 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
-import Link from '@components/Link'
-import Logo from '@components/Logo'
+import Link from '@ui/Link'
+import Logo from '@ui/Logo'
 import { authStore } from '@stores/authStore'
 
-import { signOut } from '@/common/pocketbase/auth'
+import { signOut } from '@/api/auth'
 import { navLinks, userLinks } from './navLinks'
 
 function Desktop() {
