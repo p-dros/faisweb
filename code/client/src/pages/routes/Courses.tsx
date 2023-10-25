@@ -3,13 +3,16 @@ import Link from '@ui/Link'
 import links from '@/config/links'
 import { Container, Grid, GridItem, Heading } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import CourseCard from '../components/Courses/CourseCard'
+import CourseCard from '../../components/Courses/CourseCard'
 
 function Courses() {
-  const { data: courses, isLoading, error, isSuccess } = useQuery('courses', getCourses)
+  const { data: courses, isLoading, isError, isSuccess, error } = useQuery('courses', getCourses)
 
-  if (error) {
-    throw new Error("Couldn't fetch courses")
+  if (isError) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    }
+    throw new Error('Something went wrong')
   }
 
   return (

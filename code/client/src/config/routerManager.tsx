@@ -1,18 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import Landing from '@/pages/Landing'
-import GlobalError from '@/layouts/GlobalError'
+import Landing from '@/pages/routes/Landing'
+import GlobalError from '@/pages/errors/GlobalError'
 
-import Login from '@/pages/Login'
-import Register from '@/pages/Register'
+import Login from '@/pages/routes/Login'
+import Register from '@/pages/routes/Register'
 
-import ProtectedLayout from '@/layouts/Protected'
-import Profile from '@/pages/Profile'
-import Courses from '@/pages/Courses'
-import CoursesError from '@components/Courses/Error'
+import ProtectedLayout from '@/pages/layouts/Protected'
+import Profile from '@/pages/routes/Profile'
+import Courses from '@/pages/routes/Courses'
+import CoursesError from '@/pages/errors/CourseError'
 
 import links from '@/config/links'
-import Course from '@/pages/Course'
+import Course from '@/pages/routes/Course'
 
 const router = createBrowserRouter([
   {

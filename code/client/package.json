@@ -19,6 +19,7 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource-variable/plus-jakarta-sans": "^5.0.16",
     "@hookform/resolvers": "^3.3.2",
+    "@tanstack/react-query-devtools": "^5.1.0",
     "@types/node": "^20.8.4",
     "framer-motion": "^10.16.4",
     "pocketbase": "^0.18.2",

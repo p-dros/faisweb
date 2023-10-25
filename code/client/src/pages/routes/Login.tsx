@@ -1,4 +1,4 @@
-import Form from '../components/Auth/Form'
+import Form from '../../components/Auth/Form'
 import Link from '@ui/Link'
 import { signIn } from '@/api/auth'
 import { authStore } from '@stores/authStore'

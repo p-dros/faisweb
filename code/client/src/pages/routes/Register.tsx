@@ -5,11 +5,11 @@ import { createUser } from '@/api/auth'
 import { ClientResponseError } from 'pocketbase'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import Form from '../components/Auth/Form'
+import Form from '../../components/Auth/Form'
 
 import links from '@/config/links'
 import * as yup from 'yup'
-import Wrapper from '../components/Auth/Register/Wrapper'
+import Wrapper from '../../components/Auth/Register/Wrapper'
 
 const schema = yup.object({
   email: yup.string().required('Email is required').email('Invalid Email'),
