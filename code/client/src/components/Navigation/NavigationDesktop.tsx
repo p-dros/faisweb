@@ -1,21 +1,12 @@
 import links from '@/config/links'
-import {
-  Avatar,
-  Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  Text,
-} from '@chakra-ui/react'
+import { Avatar, Button, Flex, Icon, Text } from '@chakra-ui/react'
 import { authStore } from '@stores/authStore'
 import Link from '@ui/Link'
 import Logo from '@ui/Logo'
 
 import { signOut } from '@/api/auth'
-import { navLinks, userLinks } from './navigationLinks'
+import { FaDoorOpen } from 'react-icons/fa6'
+import { navLinks } from './navigationLinks'
 
 function NavigationDesktop() {
   const user = authStore((state) => state.currentUser)
@@ -43,32 +34,14 @@ function NavigationDesktop() {
         </Flex>
       </Flex>
       {user ? (
-        <Menu>
-          <MenuButton>
+        <Flex align={'center'} gap={2}>
+          <Link to={links.profile}>
             <Avatar name={user.name} src={user.avatar} />
-          </MenuButton>
-          <MenuList fontSize={'lg'}>
-            {userLinks.map(({ path, title }) => (
-              <MenuItem key={path} textAlign={'center'} fontWeight={500}>
-                <Link to={path} w={'full'}>
-                  {title}
-                </Link>
-              </MenuItem>
-            ))}
-            <MenuDivider />
-            <MenuItem>
-              <Button
-                fontSize={'lg'}
-                w='full'
-                textAlign={'center'}
-                onClick={() => signOut()}
-                variant={'unstyled'}
-                as={Link}>
-                Sign Out
-              </Button>
-            </MenuItem>
-          </MenuList>
-        </Menu>
+          </Link>
+          <Button aria-label='Sign Out' variant={'ghost'} onClick={signOut}>
+            <Icon as={FaDoorOpen} />
+          </Button>
+        </Flex>
       ) : (
         <Flex gap={4}>
           <Button as={Link} to={links.login} variant={'ghost'}>

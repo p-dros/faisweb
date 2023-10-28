@@ -18,7 +18,6 @@ function Navigation() {
       bgColor={'white'}
       top={hasScrolled && scrollDirection === 'down' ? '-100%' : 0}
       w='full'
-      zIndex={'tooltip'}
       transition={'top 350ms'}>
       <Show below={'md'}>
         <NavigationMobile />
