@@ -17,7 +17,7 @@ function CoursesFilters({}: Props) {
 }
 
 function Filters() {
-  return <Box>Filters</Box>
+  return <Box>FILTERS</Box>
 }
 
 export default CoursesFilters
