@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "prepare": "cd ../.. && husky install code/client/.husky",
     "format": "prettier --write .",
-    "generate-types": "npx pocketbase-typegen --db ../server/pb_data/data.db --out src/types/pocketbase-types.ts"
+    "generate-types": "npx pocketbase-typegen --db ../server/pb_data/data.db --out src/types/pocketbaseTypes.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",

@@ -1,5 +1,5 @@
 import { pb } from '@/config/pocketbase'
-import { CoursesResponse } from '@/types/pocketbase-types'
+import { CoursesResponse } from '@/types/pocketbaseTypes'
 import { wait } from '@/utils/helpers'
 
 export async function getCourses(): Promise<CoursesResponse[]> {

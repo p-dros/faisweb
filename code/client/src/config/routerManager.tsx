@@ -1,18 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import Landing from '@/pages/routes/Landing'
-import GlobalError from '@/pages/errors/GlobalError'
+import GlobalError from '@/pages/GlobalError'
+import ProtectedLayout from '@/pages/ProtectedLayout'
 
-import Login from '@/pages/routes/Login'
-import Register from '@/pages/routes/Register'
+import { Landing } from '@/pages/Landing'
 
-import ProtectedLayout from '@/pages/layouts/Protected'
-import Profile from '@/pages/routes/Profile'
-import Courses from '@/pages/routes/Courses'
-import CoursesError from '@/pages/errors/CourseError'
+import { Login } from '@/pages/Login'
+import { Register } from '@/pages/Register'
+
+import { Courses, CoursesError } from '@/pages/Courses'
+
+import { Course } from '@/pages/Course'
 
 import links from '@/config/links'
-import Course from '@/pages/routes/Course'
 
 const router = createBrowserRouter([
   {
@@ -26,10 +26,6 @@ const router = createBrowserRouter([
       {
         element: <ProtectedLayout />,
         children: [
-          {
-            path: links.profile,
-            element: <Profile />,
-          },
           {
             path: links.courses,
             element: <Courses />,

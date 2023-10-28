@@ -1,4 +1,4 @@
-import { UsersResponse } from '@/types/pocketbase-types'
+import { UsersResponse } from '@/types/pocketbaseTypes'
 import { create } from 'zustand'
 import { pb } from '@/config/pocketbase'
 
