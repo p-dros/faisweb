@@ -1,13 +1,7 @@
 import { getCourses } from '@/api/courses'
-import {
-  Card,
-  CardHeader,
-  Container,
-  Grid,
-  GridItem,
-  Heading,
-} from '@chakra-ui/react'
+import { Container, Grid, GridItem } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
+import CoursesFiltersPanel from './components/CoursesFiltersPanel'
 import CoursesView from './components/CoursesView'
 
 function Courses() {
@@ -16,29 +10,18 @@ function Courses() {
     isLoading,
     isError,
     isSuccess,
-    error,
   } = useQuery('courses', getCourses)
-
-  if (isError) {
-    if (error instanceof Error) {
-      throw new Error(error.message)
-    }
-    throw new Error('Something went wrong')
-  }
 
   return (
     <Container maxW={'container.xl'} p={0}>
       <Grid templateColumns={{ base: '1fr', lg: '1fr 3fr' }} gap={8} p={4}>
         <GridItem>
-          <Card>
-            <CardHeader>
-              <Heading size={'lg'}>Filters</Heading>
-            </CardHeader>
-          </Card>
+          <CoursesFiltersPanel />
         </GridItem>
         <GridItem>
           {isLoading && <CoursesView.Skeleton />}
           {isSuccess && <CoursesView courses={courses} />}
+          {isError && <CoursesView.Error />}
         </GridItem>
       </Grid>
     </Container>

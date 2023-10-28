@@ -1,4 +1,4 @@
-const lint = () => `eslint --fix`
+const lint = () => `eslint --report-unused-disable-directives --max-warnings 0`
 
 const runPrettier = (filenames) =>
   `yarn prettier --write ${filenames.join(' ')}`

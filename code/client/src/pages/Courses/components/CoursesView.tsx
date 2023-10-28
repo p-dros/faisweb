@@ -1,7 +1,7 @@
 import links from '@/config/links'
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Center, Grid, GridItem } from '@chakra-ui/react'
 import Link from '@ui/Link'
-import CourseCard from './CourseCard'
+import CourseCard from './CoursesCard'
 import { CoursesResponse } from '@/types/pocketbaseTypes'
 
 interface Props {
@@ -26,8 +26,8 @@ function CoursesView({ courses }: Props) {
 
 function CoursesViewSkeleton() {
   return (
-    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(300px, 1fr))'}>
-      {Array.from({ length: 10 }).map((_, index) => (
+    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}>
+      {Array.from({ length: 18 }).map((_, index) => (
         <GridItem key={index}>
           <CourseCard.Skeleton />
         </GridItem>
@@ -36,6 +36,11 @@ function CoursesViewSkeleton() {
   )
 }
 
+function CoursesViewError() {
+  return <Center>Error</Center>
+}
+
 CoursesView.Skeleton = CoursesViewSkeleton
+CoursesView.Error = CoursesViewError
 
 export default CoursesView
