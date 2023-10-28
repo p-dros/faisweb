@@ -10,10 +10,12 @@ interface Props {
 
 function CoursesView({ courses }: Props) {
   return (
-    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(300px, 1fr))'}>
+    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}>
       {courses.map((course) => (
         <GridItem key={course.id}>
-          <Link to={`${links.courses}/${course.id}`} style={{ textDecoration: 'none' }}>
+          <Link
+            to={`${links.courses}/${course.id}`}
+            style={{ textDecoration: 'none' }}>
             <CourseCard course={course} />
           </Link>
         </GridItem>

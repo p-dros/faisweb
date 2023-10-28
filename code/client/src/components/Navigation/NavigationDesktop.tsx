@@ -3,8 +3,6 @@ import {
   Avatar,
   Button,
   Flex,
-  Grid,
-  GridItem,
   Menu,
   MenuButton,
   MenuDivider,
@@ -12,9 +10,9 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
+import { authStore } from '@stores/authStore'
 import Link from '@ui/Link'
 import Logo from '@ui/Logo'
-import { authStore } from '@stores/authStore'
 
 import { signOut } from '@/api/auth'
 import { navLinks, userLinks } from './navigationLinks'
@@ -23,63 +21,66 @@ function NavigationDesktop() {
   const user = authStore((state) => state.currentUser)
 
   return (
-    <Grid gap={8} alignItems={'center'} templateColumns={'1fr 2fr 1fr'} w={'full'} maxW={'container.xl'}>
-      <GridItem>
+    <Flex
+      gap={8}
+      alignItems={'center'}
+      w={'full'}
+      maxW={'container.xl'}
+      justify={'space-between'}>
+      <Flex gap={4}>
         <Logo />
-      </GridItem>
-      <GridItem justifySelf={'center'}>
-        <Flex as={'nav'} gap={8}>
-          {navLinks.map(({ path, title, icon }) => (
-            <Button variant={'ghost'} as={Link} key={path} to={path} fontSize={'lg'}>
-              <Flex align={'center'} gap={2}>
-                {icon}
-                <Text>{title}</Text>
-              </Flex>
+        <Flex as={'nav'} gap={2}>
+          {navLinks.map(({ path, title }) => (
+            <Button
+              variant={'ghost'}
+              as={Link}
+              key={path}
+              to={path}
+              fontSize={'lg'}>
+              <Text>{title}</Text>
             </Button>
           ))}
         </Flex>
-      </GridItem>
-      <GridItem justifySelf={'end'}>
-        {user ? (
-          <Menu>
-            <MenuButton>
-              <Avatar name={user.name} src={user.avatar} />
-            </MenuButton>
-            <MenuList fontSize={'lg'}>
-              {userLinks.map(({ path, title }) => (
-                <MenuItem key={path} textAlign={'center'} fontWeight={500}>
-                  <Link to={path} w={'full'}>
-                    {title}
-                  </Link>
-                </MenuItem>
-              ))}
-              <MenuDivider />
-              <MenuItem>
-                <Button
-                  fontSize={'lg'}
-                  w='full'
-                  textAlign={'center'}
-                  onClick={() => signOut()}
-                  variant={'unstyled'}
-                  as={Link}>
-                  Sign Out
-                </Button>
+      </Flex>
+      {user ? (
+        <Menu>
+          <MenuButton>
+            <Avatar name={user.name} src={user.avatar} />
+          </MenuButton>
+          <MenuList fontSize={'lg'}>
+            {userLinks.map(({ path, title }) => (
+              <MenuItem key={path} textAlign={'center'} fontWeight={500}>
+                <Link to={path} w={'full'}>
+                  {title}
+                </Link>
               </MenuItem>
-            </MenuList>
-          </Menu>
-        ) : (
-          <Flex gap={4}>
-            <Button as={Link} to={links.login} variant={'ghost'}>
-              Sign In
-            </Button>
+            ))}
+            <MenuDivider />
+            <MenuItem>
+              <Button
+                fontSize={'lg'}
+                w='full'
+                textAlign={'center'}
+                onClick={() => signOut()}
+                variant={'unstyled'}
+                as={Link}>
+                Sign Out
+              </Button>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      ) : (
+        <Flex gap={4}>
+          <Button as={Link} to={links.login} variant={'ghost'}>
+            Sign In
+          </Button>
 
-            <Button as={Link} to={links.register} variant={'outline'}>
-              Sign Up
-            </Button>
-          </Flex>
-        )}
-      </GridItem>
-    </Grid>
+          <Button as={Link} to={links.register} variant={'outline'}>
+            Sign Up
+          </Button>
+        </Flex>
+      )}
+    </Flex>
   )
 }
 
