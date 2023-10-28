@@ -27,7 +27,7 @@ function NavigationDesktop() {
       w={'full'}
       maxW={'container.xl'}
       justify={'space-between'}>
-      <Flex gap={4}>
+      <Flex gap={8}>
         <Logo />
         <Flex as={'nav'} gap={2}>
           {navLinks.map(({ path, title }) => (
