@@ -44,6 +44,7 @@
 - możliwość dodanie kursu
 - możliwość usunięcia kursu
 - możliwość zmiany danych kursu
+- możliwość archiwizacji kursu
 
 ## Recenzje
 
