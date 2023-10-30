@@ -3,14 +3,14 @@ import LoginForm from './components/LoginForm'
 import links from '@/config/links'
 import { Center } from '@chakra-ui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { authStore } from '@stores/authStore'
+import { useAuthStore } from '@stores/authStore'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
 import { loginSchema, LoginInputs } from '@/config/validations/loginValidations'
 import { ClientResponseError } from 'pocketbase'
 
 function Login() {
-  const user = authStore((state) => state.currentUser)
+  const user = useAuthStore((state) => state.currentUser)
 
   const methods = useForm<LoginInputs>({
     resolver: yupResolver(loginSchema),

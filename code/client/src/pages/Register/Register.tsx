@@ -4,14 +4,17 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 import RegisterForm from './components/RegisterForm'
-import { RegisterInputs, registerSchema } from '@/config/validations/RegisterValidations'
+import {
+  RegisterInputs,
+  registerSchema,
+} from '@/config/validations/RegisterValidations'
 import links from '@/config/links'
-import { authStore } from '@/stores/authStore'
+import { useAuthStore } from '@/stores/authStore'
 import RegisterWrapper from './components/RegisterWrapper'
 import { ClientResponseError } from 'pocketbase'
 
 function Register() {
-  const user = authStore((state) => state.currentUser)
+  const user = useAuthStore((state) => state.currentUser)
   const navigate = useNavigate()
 
   const methods = useForm<RegisterInputs>({
@@ -19,7 +22,12 @@ function Register() {
     resolver: yupResolver(registerSchema),
   })
 
-  const onSubmit: SubmitHandler<RegisterInputs> = async ({ email, name, password, passwordConfirm }) => {
+  const onSubmit: SubmitHandler<RegisterInputs> = async ({
+    email,
+    name,
+    password,
+    passwordConfirm,
+  }) => {
     try {
       await createUser({ email, name, password, passwordConfirm })
       navigate(links.login)

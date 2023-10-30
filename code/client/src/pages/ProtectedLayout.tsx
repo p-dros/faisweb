@@ -1,12 +1,12 @@
 import links from '@/config/links'
-import { authStore } from '@/stores/authStore'
+import { useAuthStore } from '@/stores/authStore'
 import { Box } from '@chakra-ui/react'
 import Navigation from '@/components/Navigation'
 import { Navigate, Outlet } from 'react-router-dom'
 import GridBackground from '@/components/ui/GridBackground'
 
 function ProtectedLayout() {
-  const user = authStore((state) => state.currentUser)
+  const user = useAuthStore((state) => state.currentUser)
 
   if (!user) {
     return <Navigate to={links.login} />

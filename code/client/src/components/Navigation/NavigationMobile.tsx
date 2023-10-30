@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react'
 import Link from '@ui/Link'
 import Logo from '@ui/Logo'
-import { authStore } from '@stores/authStore'
+import { useAuthStore } from '@stores/authStore'
 import { useEffect, useRef } from 'react'
 
 import { navLinks } from './navigationLinks'
@@ -30,7 +30,7 @@ function NavigationMobile() {
   const { isOpen, onClose, onToggle } = useDisclosure()
   const triggerRef = useRef<HTMLButtonElement>(null)
 
-  const user = authStore((state) => state.currentUser)
+  const user = useAuthStore((state) => state.currentUser)
 
   const location = useLocation()
 

@@ -1,14 +1,14 @@
 import links from '@/config/links'
-import { Center, Grid, GridItem } from '@chakra-ui/react'
-import Link from '@ui/Link'
-import CourseCard from './CoursesCard'
 import { CoursesResponse } from '@/types/pocketbaseTypes'
+import { Grid, GridItem } from '@chakra-ui/react'
+import Link from '@ui/Link'
+import CoursesGalleryCard from './CoursesGalleryCard'
 
 interface Props {
   courses: CoursesResponse[]
 }
 
-function CoursesView({ courses }: Props) {
+function CoursesGallery({ courses }: Props) {
   return (
     <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}>
       {courses.map((course) => (
@@ -16,7 +16,7 @@ function CoursesView({ courses }: Props) {
           <Link
             to={`${links.courses}/${course.id}`}
             style={{ textDecoration: 'none' }}>
-            <CourseCard course={course} />
+            <CoursesGalleryCard course={course} />
           </Link>
         </GridItem>
       ))}
@@ -24,23 +24,18 @@ function CoursesView({ courses }: Props) {
   )
 }
 
-function CoursesViewSkeleton() {
+function CoursesGallerySkeleton() {
   return (
     <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}>
       {Array.from({ length: 18 }).map((_, index) => (
         <GridItem key={index}>
-          <CourseCard.Skeleton />
+          <CoursesGalleryCard.Skeleton />
         </GridItem>
       ))}
     </Grid>
   )
 }
 
-function CoursesViewError() {
-  return <Center>Error</Center>
-}
+CoursesGallery.Skeleton = CoursesGallerySkeleton
 
-CoursesView.Skeleton = CoursesViewSkeleton
-CoursesView.Error = CoursesViewError
-
-export default CoursesView
+export default CoursesGallery

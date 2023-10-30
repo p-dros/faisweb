@@ -55,7 +55,7 @@ const getCourseInfo = ({
   ]
 }
 
-function CourseCard({ course }: Props) {
+function CoursesGalleryCard({ course }: Props) {
   const courseInfo = getCourseInfo(course)
 
   return (
@@ -92,7 +92,7 @@ function CourseCard({ course }: Props) {
   )
 }
 
-function CardSkeleton() {
+function CoursesGalleryCardSkeleton() {
   return (
     <Card h={'full'} size={'sm'}>
       <CardHeader>
@@ -106,6 +106,6 @@ function CardSkeleton() {
   )
 }
 
-CourseCard.Skeleton = CardSkeleton
+CoursesGalleryCard.Skeleton = CoursesGalleryCardSkeleton
 
-export default CourseCard
+export default CoursesGalleryCard

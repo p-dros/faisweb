@@ -6,8 +6,6 @@ import useScroll from '@/hooks/useScroll'
 function Navigation() {
   const { hasScrolled, scrollDirection } = useScroll()
 
-  console.log(hasScrolled, scrollDirection)
-
   return (
     <Center
       position={'fixed'}
@@ -15,10 +13,12 @@ function Navigation() {
       py={4}
       as='header'
       borderColor={'gray.200'}
+      boxShadow={'sm'}
       bgColor={'white'}
       top={hasScrolled && scrollDirection === 'down' ? '-100%' : 0}
       w='full'
-      transition={'top 350ms'}>
+      transition={'top 350ms'}
+      zIndex={'banner'}>
       <Show below={'md'}>
         <NavigationMobile />
       </Show>

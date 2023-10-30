@@ -1,12 +1,12 @@
 import LandingHero from './components/LandingHero'
 import links from '@/config/links'
 import { Center } from '@chakra-ui/react'
-import { authStore } from '@stores/authStore'
+import { useAuthStore } from '@stores/authStore'
 import GridBackground from '@ui/GridBackground'
 import { Navigate } from 'react-router-dom'
 
 function Landing() {
-  const user = authStore((state) => state.currentUser)
+  const user = useAuthStore((state) => state.currentUser)
 
   if (user) {
     return <Navigate to={links.courses} />

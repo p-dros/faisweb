@@ -10,10 +10,14 @@ import {
   Icon,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import { FaFilter } from 'react-icons/fa6'
 
-function CoursesFiltersPanelMobile() {
+interface Props {
+  children: ReactNode
+}
+
+function CoursesFiltersPanelMobile({ children }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -38,7 +42,7 @@ function CoursesFiltersPanelMobile() {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Filters</DrawerHeader>
-          <DrawerBody>Hello</DrawerBody>
+          <DrawerBody>{children}</DrawerBody>
         </DrawerContent>
       </Drawer>
     </>

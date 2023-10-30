@@ -1,6 +1,6 @@
 import links from '@/config/links'
 import { Avatar, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import { authStore } from '@stores/authStore'
+import { useAuthStore } from '@stores/authStore'
 import Link from '@ui/Link'
 import Logo from '@ui/Logo'
 
@@ -9,7 +9,7 @@ import { FaDoorOpen } from 'react-icons/fa6'
 import { navLinks } from './navigationLinks'
 
 function NavigationDesktop() {
-  const user = authStore((state) => state.currentUser)
+  const user = useAuthStore((state) => state.currentUser)
 
   return (
     <Flex
