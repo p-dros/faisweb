@@ -19,11 +19,11 @@
 ### Użytkownik zalogowany
 
 - możliwość wyświetlenia profilu użytkownika
-- możliwość zobaczenia polubionych kursów
+- możliwość wyświetlenia polubionych kursów
 
 ### Zweryfikowany student
 
-- możliwość zobaczenia historii wystawionych opinii
+- możliwość przeglądania historii wystawionych opinii
 
 ## Kursy
 
