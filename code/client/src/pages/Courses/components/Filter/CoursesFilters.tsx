@@ -12,9 +12,12 @@ import {
   RangeSliderThumb,
   Box,
   Flex,
+  CheckboxGroup,
+  Checkbox,
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import CoursesFiltersGroup from './CoursesFiltersGroup'
+import { CoursesTypeOptions } from '@/types/pocketbaseTypes'
 
 function CoursesFilters() {
   const filters = useFilterStore((state) => state.filters)
@@ -25,6 +28,10 @@ function CoursesFilters() {
   }
   const handleEctsSliderChange = (value: number[]) => {
     setFilters({ ects: { min: value[0], max: value[1] } })
+  }
+
+  const handleTypeChange = (value: (string | number)[]) => {
+    setFilters({ types: value as CoursesTypeOptions[] })
   }
 
   return (
@@ -54,7 +61,14 @@ function CoursesFilters() {
           <Box>{filters.ects.max}</Box>
         </Flex>
       </CoursesFiltersGroup>
-      <CoursesFiltersGroup title='Type'></CoursesFiltersGroup>
+      <CoursesFiltersGroup title='Type'>
+        <CheckboxGroup onChange={handleTypeChange}>
+          <VStack align={'start'}>
+            <Checkbox value='obligatory'>Obligatory</Checkbox>
+            <Checkbox value='optional'>Optional</Checkbox>
+          </VStack>
+        </CheckboxGroup>
+      </CoursesFiltersGroup>
     </VStack>
   )
 }

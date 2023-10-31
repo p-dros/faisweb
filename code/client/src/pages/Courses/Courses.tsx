@@ -17,7 +17,10 @@ function Courses() {
     data: courses,
     isLoading,
     isSuccess,
-  } = useGetCourses({ ...filters, name: debouncedName })
+  } = useGetCourses({
+    ...filters,
+    name: debouncedName,
+  })
 
   return (
     <Container maxW={'container.xl'} p={0}>

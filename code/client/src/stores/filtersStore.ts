@@ -13,6 +13,7 @@ const useFilterStore = create<FilterStore>()((set) => ({
       min: 0,
       max: 12,
     },
+    types: [],
   },
   setFilters: (update) =>
     set((state) => ({ filters: { ...state.filters, ...update } })),
