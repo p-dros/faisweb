@@ -13,16 +13,16 @@
 - próba rejestracji konta na ten sam adres mailowy
 - próba rejestracji konta przy wprowadzeniu zbyt długich danych podczas rejestracji
 
-## Opinie
+## Recenzje
 
-- dodawanie opinii przez osoby niezalogowane na platformie
+- dodawanie recenzjii przez osoby niezalogowane na platformie
 - nieodpowiedni format
-  - dodanie pustej opini
-  - dodanie zbyt długiej opini
-  - dodanie opini nie spełniających regulaminu
-- dodawanie zbyt wielu opini
+  - dodanie pustej recenzji
+  - dodanie zbyt długiej recenzji
+  - dodanie recenzji niepoprawnej politycznie
+- dodawanie zbyt wielu recenzji
 
-### Komentarze pod opiniami
+### Komentarze pod recenzjiami
 
 - dodawanie komentarzy przez osoby niezalogowane na platformie
 - usuwanie komentarzy przez osoby bez odpowiednich uprawnień
