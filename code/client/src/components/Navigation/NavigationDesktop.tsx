@@ -7,10 +7,11 @@ import Logo from '@ui/Logo'
 import { signOut } from '@/api/auth'
 import { FaDoorOpen } from 'react-icons/fa6'
 import { navLinks } from './navigationLinks'
+import { pb } from '@/config/pocketbase'
 
 function NavigationDesktop() {
   const user = useAuthStore((state) => state.currentUser)
-
+  console.log(user?.avatar)
   return (
     <Flex
       gap={8}
@@ -36,7 +37,10 @@ function NavigationDesktop() {
       {user ? (
         <Flex align={'center'} gap={2}>
           <Link to={links.profile}>
-            <Avatar name={user.name} src={user.avatar} />
+            <Avatar
+              name={user.name}
+              src={pb.files.getUrl(user, user.avatar, { thumb: '10x10' })}
+            />
           </Link>
           <Button aria-label='Sign Out' variant={'ghost'} onClick={signOut}>
             <Icon as={FaDoorOpen} />

@@ -74,6 +74,7 @@ export type FieldsRecord = {
   courses?: RecordIdString[]
   description: string
   name: string
+  shortcut: string
 }
 
 export type ReviewsRecord = {

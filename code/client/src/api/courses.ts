@@ -19,29 +19,19 @@ export async function getFilteredCourses({
   ects,
   types,
 }: CoursesFilters) {
-  const filteredTypes = types.map((type) => `type = '${type}'`).join(' || ')
+  let filterString = `name ~ {:name} && ects >= {:ectsMin} && ects <= {:ectsMax}`
+  const filterParams = {
+    name,
+    ectsMin: ects.min,
+    ectsMax: ects.max,
+  }
 
-  if (types.length === 0) {
-    return await pb.collection('courses').getList<CoursesResponse>(1, 20, {
-      filter: pb.filter(
-        `name ~ {:name} && ects >= {:ectsMin} && ects <= {:ectsMax}`,
-        {
-          name,
-          ectsMin: ects.min,
-          ectsMax: ects.max,
-        }
-      ),
-    })
+  if (types.length > 0) {
+    const filteredTypes = types.map((type) => `type = '${type}'`).join(' || ')
+    filterString += ` && (${filteredTypes})`
   }
 
   return await pb.collection('courses').getList<CoursesResponse>(1, 20, {
-    filter: pb.filter(
-      `name ~ {:name} && ects >= {:ectsMin} && ects <= {:ectsMax} && (${filteredTypes})`,
-      {
-        name,
-        ectsMin: ects.min,
-        ectsMax: ects.max,
-      }
-    ),
+    filter: pb.filter(filterString, filterParams),
   })
 }

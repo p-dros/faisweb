@@ -1,23 +1,23 @@
 import { useFilterActions, useFilterStore } from '@/stores/filtersStore'
+import { CoursesTypeOptions } from '@/types/pocketbaseTypes'
 import { SearchIcon } from '@chakra-ui/icons'
 import {
+  Box,
+  Checkbox,
+  CheckboxGroup,
+  Flex,
   Input,
   InputGroup,
   InputLeftElement,
-  StackDivider,
-  VStack,
   RangeSlider,
-  RangeSliderTrack,
   RangeSliderFilledTrack,
   RangeSliderThumb,
-  Box,
-  Flex,
-  CheckboxGroup,
-  Checkbox,
+  RangeSliderTrack,
+  StackDivider,
+  VStack,
 } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import CoursesFiltersGroup from './CoursesFiltersGroup'
-import { CoursesTypeOptions } from '@/types/pocketbaseTypes'
 
 function CoursesFilters() {
   const filters = useFilterStore((state) => state.filters)
@@ -62,7 +62,7 @@ function CoursesFilters() {
         </Flex>
       </CoursesFiltersGroup>
       <CoursesFiltersGroup title='Type'>
-        <CheckboxGroup onChange={handleTypeChange}>
+        <CheckboxGroup onChange={handleTypeChange} value={filters.types}>
           <VStack align={'start'}>
             <Checkbox value='obligatory'>Obligatory</Checkbox>
             <Checkbox value='optional'>Optional</Checkbox>

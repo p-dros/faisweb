@@ -22,6 +22,8 @@ function Courses() {
     name: debouncedName,
   })
 
+  console.log(courses)
+
   return (
     <Container maxW={'container.xl'} p={0}>
       <Grid
