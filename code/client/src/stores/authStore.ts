@@ -2,15 +2,24 @@ import { UsersResponse } from '@/types/pocketbaseTypes'
 import { create } from 'zustand'
 import { pb } from '@/config/pocketbase'
 
-interface AuthStore {
+interface AuthState {
   currentUser: UsersResponse | null
-  setCurrentUser: (user: UsersResponse | null) => void
 }
 
-export const useAuthStore = create<AuthStore>()((set) => ({
+interface AuthActions {
+  actions: {
+    setCurrentUser: (user: UsersResponse | null) => void
+  }
+}
+
+export const useAuthStore = create<AuthState & AuthActions>()((set) => ({
   currentUser: pb.authStore.model as UsersResponse,
-  setCurrentUser: (user) => set(() => ({ currentUser: user })),
+  actions: {
+    setCurrentUser: (user) => set(() => ({ currentUser: user })),
+  },
 }))
+
+export const useAuthActions = () => useAuthStore((state) => state.actions)
 
 pb.authStore.onChange((auth) => {
   console.log('auth changed', auth)
