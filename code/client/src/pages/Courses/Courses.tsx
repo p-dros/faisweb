@@ -1,5 +1,5 @@
 import { CoursesFilters, getFilteredCourses } from '@/api/courses'
-import useFilterStore from '@/stores/filtersStore'
+import { useFilterStore } from '@/stores/filtersStore'
 import { Container, Grid, GridItem } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import CoursesFiltersPanel from './components/Filter/CoursesFiltersPanel'

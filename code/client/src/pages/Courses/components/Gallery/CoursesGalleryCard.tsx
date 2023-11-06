@@ -1,4 +1,8 @@
-import { CoursesResponse, CoursesSeasonOptions } from '@/types/pocketbaseTypes'
+import {
+  CoursesResponse,
+  CoursesSeasonOptions,
+  CoursesTypeOptions,
+} from '@/types/pocketbaseTypes'
 import {
   Card,
   CardBody,
@@ -33,13 +37,13 @@ interface CourseInfo {
 
 const getCourseInfo = ({
   ects,
-  isOptional,
   season,
   semester,
+  type,
 }: CoursesResponse): CourseInfo[] => {
   return [
     { label: 'ECTS', value: ects, icon: <Icon as={FaGraduationCap} /> },
-    isOptional
+    type === CoursesTypeOptions.optional
       ? {
           label: 'Season',
           value: season,

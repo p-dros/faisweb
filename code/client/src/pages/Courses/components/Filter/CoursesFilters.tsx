@@ -1,4 +1,4 @@
-import useFilterStore from '@/stores/filtersStore'
+import { useFilterActions, useFilterStore } from '@/stores/filtersStore'
 import { SearchIcon } from '@chakra-ui/icons'
 import {
   Input,
@@ -21,7 +21,7 @@ import { CoursesTypeOptions } from '@/types/pocketbaseTypes'
 
 function CoursesFilters() {
   const filters = useFilterStore((state) => state.filters)
-  const setFilters = useFilterStore((state) => state.setFilters)
+  const { setFilters } = useFilterActions()
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilters({ name: e.target.value })
