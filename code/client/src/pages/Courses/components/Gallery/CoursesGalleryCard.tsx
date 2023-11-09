@@ -1,9 +1,4 @@
-import {
-  CoursesResponse,
-  CoursesSeasonOptions,
-  CoursesTypeOptions,
-  FieldsResponse,
-} from '@/types/pocketbaseTypes'
+import { CoursesResponse, FieldsResponse } from '@/types/pocketbaseTypes'
 import {
   Card,
   CardBody,
@@ -44,17 +39,11 @@ const getCourseInfo = ({
 }: CoursesResponse): CourseInfo[] => {
   return [
     { label: 'ECTS', value: ects, icon: <Icon as={FaGraduationCap} /> },
-    type === CoursesTypeOptions.optional
+    type === 'optional'
       ? {
           label: 'Season',
           value: season,
-          icon: (
-            <Icon
-              as={
-                season === CoursesSeasonOptions.summer ? FaSun : FaRegSnowflake
-              }
-            />
-          ),
+          icon: <Icon as={season === 'summer' ? FaSun : FaRegSnowflake} />,
         }
       : { label: 'Semester', value: semester, icon: <Icon as={FaCalendar} /> },
   ]

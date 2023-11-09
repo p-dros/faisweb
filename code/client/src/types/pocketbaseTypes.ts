@@ -44,20 +44,12 @@ export type CommentsRecord = {
   review: RecordIdString
 }
 
-export enum CoursesSeasonOptions {
-  'summer' = 'summer',
-  'winter' = 'winter',
-}
+export type CoursesSeasonOptions = 'summer' | 'winter'
 
-export enum CoursesTypeOptions {
-  'optional' = 'optional',
-  'obligatory' = 'obligatory',
-}
+export type CoursesTypeOptions = 'optional' | 'obligatory'
 
-export enum CoursesVerificationFormOptions {
-  'exam' = 'exam',
-  'assesment' = 'assesment',
-}
+export type CoursesVerificationFormOptions = 'exam' | 'assesment'
+
 export type CoursesRecord = {
   description: string
   difficulty?: number
@@ -89,11 +81,8 @@ export type SubCommentsRecord = {
   content?: string
 }
 
-export enum UsersRoleOptions {
-  'admin' = 'admin',
-  'student' = 'student',
-  'guest' = 'guest',
-}
+export type UsersRoleOptions = 'admin' | 'student' | 'guest'
+
 export type UsersRecord = {
   avatar?: string
   name: string
