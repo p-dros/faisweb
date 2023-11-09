@@ -1,6 +1,7 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
 
 import { Center, Flex, Box, Text, Heading } from '@chakra-ui/react'
+import GridBackground from '@/components/ui/GridBackground'
 
 function GlobalError() {
   const error = useRouteError()
@@ -18,6 +19,8 @@ function GlobalError() {
 
   return (
     <Center minH={'100vh'}>
+      <GridBackground variant='linear' opacity={0.35} />
+
       <Flex direction={'column'} align={'center'} gap={4}>
         <Heading as={'h1'} size={'3xl'}>
           Oops!

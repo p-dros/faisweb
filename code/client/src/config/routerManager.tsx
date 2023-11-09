@@ -8,9 +8,7 @@ import { Landing } from '@/pages/Landing'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
 
-import { Courses, CoursesError } from '@/pages/Courses'
-
-import { Course } from '@/pages/Course'
+import { Courses } from '@/pages/Courses'
 
 import links from '@/config/links'
 
@@ -29,11 +27,6 @@ const router = createBrowserRouter([
           {
             path: links.courses,
             element: <Courses />,
-            errorElement: <CoursesError />,
-          },
-          {
-            path: `${links.courses}/:courseId`,
-            element: <Course />,
           },
         ],
       },

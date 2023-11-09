@@ -1,9 +1,6 @@
 import { pb } from '@/config/pocketbase'
-import {
-  CoursesResponse,
-  CoursesTypeOptions,
-  FieldsResponse,
-} from '@/types/pocketbaseTypes'
+import { CoursesResponseWithFields } from '@/types/pocketbaseExtensions'
+import { CoursesResponse, CoursesTypeOptions } from '@/types/pocketbaseTypes'
 
 export async function getCourses(): Promise<CoursesResponse[]> {
   return await pb.collection('courses').getFullList<CoursesResponse>()
@@ -41,7 +38,7 @@ export async function getFilteredCourses({
 
   return await pb
     .collection('courses')
-    .getList<CoursesResponse<FieldsResponse[]>>(1, 20, {
+    .getList<CoursesResponseWithFields>(1, 20, {
       filter: pb.filter(filterString, filterParams),
       expand,
     })

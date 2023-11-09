@@ -1,4 +1,5 @@
-import { CoursesResponse, FieldsResponse } from '@/types/pocketbaseTypes'
+import { CoursesResponseWithFields } from '@/types/pocketbaseExtensions'
+import { CoursesResponse } from '@/types/pocketbaseTypes'
 import {
   Card,
   CardBody,
@@ -20,9 +21,10 @@ import {
   FaRegSnowflake,
   FaSun,
 } from 'react-icons/fa6'
+import CoursesGalleryCardFieldsBadges from './CoursesGalleryCardFieldsBadges'
 
 interface Props {
-  course: CoursesResponse<FieldsResponse[]>
+  course: CoursesResponseWithFields
 }
 
 interface CourseInfo {
@@ -61,6 +63,9 @@ function CoursesGalleryCard({ course }: Props) {
       <CardHeader>
         <Heading as={'h3'} size={'md'} mt={2}>
           {course.name}
+          <CoursesGalleryCardFieldsBadges
+            fields={course.expand?.fields || []}
+          />
         </Heading>
       </CardHeader>
       <CardBody>

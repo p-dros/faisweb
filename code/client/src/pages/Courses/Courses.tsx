@@ -1,24 +1,14 @@
-import { getFilteredCourses } from '@/api/courses'
-import { useFilterStore } from '@/stores/filtersStore'
 import { Container, Grid, GridItem } from '@chakra-ui/react'
-import { useDebounce } from '@uidotdev/usehooks'
-import { useQuery } from 'react-query'
+import { useCourses } from './Courses.hooks'
 import CoursesFiltersPanel from './components/Filter/CoursesFiltersPanel'
 import CoursesGallery from './components/Gallery/CoursesGallery'
 
 function Courses() {
-  const filters = useFilterStore((state) => state.filters)
-  const debouncedName = useDebounce(filters.name, 500)
-  const {
-    data: courses,
-    isLoading,
-    isSuccess,
-  } = useQuery(['courses', filters], () =>
-    getFilteredCourses({
-      filters: { ...filters, name: debouncedName },
-      expand: 'fields',
-    })
-  )
+  const { data: courses, isLoading, isSuccess, error } = useCourses()
+
+  if (error) {
+    throw error
+  }
 
   return (
     <Container maxW={'container.xl'} p={0}>
