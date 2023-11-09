@@ -1,7 +1,12 @@
-import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+} from '@chakra-ui/react'
 
 import { SubmitHandler, useFormContext } from 'react-hook-form'
-import Form from '@ui/Form'
+import FormWrapper from '@/components/ui/FormWrapper'
 import Link from '@ui/Link'
 
 import { LoginInputs } from '@/config/validations/loginValidations'
@@ -18,8 +23,8 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
   } = useFormContext<LoginInputs>()
 
   return (
-    <Form.Wrapper>
-      <Form
+    <FormWrapper>
+      <FormWrapper.Form
         title='Sign in to FAISWeb'
         onSubmit={handleSubmit(onSubmit)}
         isSubmitting={isSubmitting}
@@ -34,13 +39,13 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
           <Input type='password' {...register('password')} />
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
-      </Form>
-      <Form.Footer>
+      </FormWrapper.Form>
+      <FormWrapper.Footer>
         Don&apos;t have an account?{' '}
         <Link fontWeight={'bold'} color={'black'} to={'/sign-up'}>
           Create a free account
         </Link>
-      </Form.Footer>
-    </Form.Wrapper>
+      </FormWrapper.Footer>
+    </FormWrapper>
   )
 }

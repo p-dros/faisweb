@@ -2,6 +2,7 @@ import {
   CoursesResponse,
   CoursesSeasonOptions,
   CoursesTypeOptions,
+  FieldsResponse,
 } from '@/types/pocketbaseTypes'
 import {
   Card,
@@ -26,7 +27,7 @@ import {
 } from 'react-icons/fa6'
 
 interface Props {
-  course: CoursesResponse
+  course: CoursesResponse<FieldsResponse[]>
 }
 
 interface CourseInfo {

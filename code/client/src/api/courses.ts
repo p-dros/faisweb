@@ -1,5 +1,9 @@
 import { pb } from '@/config/pocketbase'
-import { CoursesResponse, CoursesTypeOptions } from '@/types/pocketbaseTypes'
+import {
+  CoursesResponse,
+  CoursesTypeOptions,
+  FieldsResponse,
+} from '@/types/pocketbaseTypes'
 
 export async function getCourses(): Promise<CoursesResponse[]> {
   return await pb.collection('courses').getFullList<CoursesResponse>()
@@ -14,11 +18,15 @@ export type CoursesFilters = {
   types: CoursesTypeOptions[]
 }
 
+type Props = {
+  filters: CoursesFilters
+  expand?: string
+}
+
 export async function getFilteredCourses({
-  name,
-  ects,
-  types,
-}: CoursesFilters) {
+  filters: { name, ects, types },
+  expand,
+}: Props) {
   let filterString = `name ~ {:name} && ects >= {:ectsMin} && ects <= {:ectsMax}`
   const filterParams = {
     name,
@@ -31,7 +39,10 @@ export async function getFilteredCourses({
     filterString += ` && (${filteredTypes})`
   }
 
-  return await pb.collection('courses').getList<CoursesResponse>(1, 20, {
-    filter: pb.filter(filterString, filterParams),
-  })
+  return await pb
+    .collection('courses')
+    .getList<CoursesResponse<FieldsResponse[]>>(1, 20, {
+      filter: pb.filter(filterString, filterParams),
+      expand,
+    })
 }

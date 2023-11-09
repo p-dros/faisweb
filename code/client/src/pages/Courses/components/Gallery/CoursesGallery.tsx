@@ -1,11 +1,11 @@
 import links from '@/config/links'
-import { CoursesResponse } from '@/types/pocketbaseTypes'
+import { CoursesResponse, FieldsResponse } from '@/types/pocketbaseTypes'
 import { Grid, GridItem } from '@chakra-ui/react'
 import Link from '@ui/Link'
 import CoursesGalleryCard from './CoursesGalleryCard'
 
 interface Props {
-  courses: CoursesResponse[]
+  courses: CoursesResponse<FieldsResponse[]>[]
 }
 
 function CoursesGallery({ courses }: Props) {

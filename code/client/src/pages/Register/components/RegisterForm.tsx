@@ -1,9 +1,17 @@
-import { Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react'
+import links from '@/config/links'
+import {
+  Checkbox,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Text,
+} from '@chakra-ui/react'
 import Link from '@ui/Link'
 import { SubmitHandler, useFormContext } from 'react-hook-form'
-import Form from '../../../components/ui/Form'
+import FormWrapper from '@/components/ui/FormWrapper'
 import { RegisterInputs } from '../../../config/validations/RegisterValidations'
-import links from '@/config/links'
 
 interface RegisterFormProps {
   onSubmit: SubmitHandler<RegisterInputs>
@@ -17,8 +25,8 @@ function RegisterForm({ onSubmit }: RegisterFormProps) {
   } = useFormContext<RegisterInputs>()
 
   return (
-    <Form.Wrapper>
-      <Form
+    <FormWrapper>
+      <FormWrapper.Form
         title='Create a free account'
         onSubmit={handleSubmit(onSubmit)}
         isSubmitting={isSubmitting}
@@ -42,23 +50,27 @@ function RegisterForm({ onSubmit }: RegisterFormProps) {
           <FormControl isInvalid={!!errors.passwordConfirm}>
             <FormLabel>Confirm Password</FormLabel>
             <Input type='password' {...register('passwordConfirm')} />
-            <FormErrorMessage>{errors.passwordConfirm?.message}</FormErrorMessage>
+            <FormErrorMessage>
+              {errors.passwordConfirm?.message}
+            </FormErrorMessage>
           </FormControl>
         </Flex>
         <FormControl isInvalid={!!errors.regulaminAccept} mt={6}>
-          <Checkbox {...register('regulaminAccept')}>I agree to the regulamin</Checkbox>
+          <Checkbox {...register('regulaminAccept')}>
+            I agree to the regulamin
+          </Checkbox>
           <FormErrorMessage>{errors.regulaminAccept?.message}</FormErrorMessage>
         </FormControl>
-      </Form>
-      <Form.Footer>
+      </FormWrapper.Form>
+      <FormWrapper.Footer>
         <Text>
           Already have an account?{' '}
           <Link fontWeight={'bold'} color={'black'} to={links.login}>
             Login Now
           </Link>
         </Text>
-      </Form.Footer>
-    </Form.Wrapper>
+      </FormWrapper.Footer>
+    </FormWrapper>
   )
 }
 

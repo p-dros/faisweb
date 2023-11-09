@@ -1,4 +1,13 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Heading, VStack } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Box,
+  Button,
+  Heading,
+  VStack,
+} from '@chakra-ui/react'
 import { ComponentProps, ReactNode } from 'react'
 import Logo from './Logo'
 
@@ -17,7 +26,13 @@ interface FooterProps {
   children: ReactNode
 }
 
-function Form({ title, children, isSubmitting, errorMessage, ...rest }: FormProps) {
+function Form({
+  title,
+  children,
+  isSubmitting,
+  errorMessage,
+  ...rest
+}: FormProps) {
   return (
     <Box w={'full'}>
       <Heading as='h1' mb={4} fontWeight={'medium'} letterSpacing={'wide'}>
@@ -35,7 +50,12 @@ function Form({ title, children, isSubmitting, errorMessage, ...rest }: FormProp
               </Box>
             </Alert>
           )}
-          <Button mt={4} isLoading={isSubmitting ?? false} type={'submit'} variant={'solid'} w={'full'}>
+          <Button
+            mt={4}
+            isLoading={isSubmitting ?? false}
+            type={'submit'}
+            variant={'solid'}
+            w={'full'}>
             Submit
           </Button>
         </VStack>
@@ -57,7 +77,7 @@ function FormWrapper({ children }: FormWrapperProps) {
   )
 }
 
-Form.Footer = Footer
-Form.Wrapper = FormWrapper
+FormWrapper.Footer = Footer
+FormWrapper.Form = Form
 
-export default Form
+export default FormWrapper
