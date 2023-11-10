@@ -1,40 +1,49 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import Layout from '@/pages/Layout'
+import GlobalError from '@/pages/GlobalError'
+import ProtectedLayout from '@/pages/ProtectedLayout'
 
-import ErrorPage from '@/pages/Error'
+import { Landing } from '@/pages/Landing'
 
-import Home from '@/pages/Home'
-import Login from '@/pages/auth/Login'
-import Register from '@/pages/auth/Register'
-import links from '@/common/links'
-import Profile from '@/pages/Profile'
+import { Login } from '@/pages/Login'
+import { Register } from '@/pages/Register'
+
+import { Course } from '@/pages/Course'
+import { Courses } from '@/pages/Courses'
+
+import links from '@/config/links'
 
 const router = createBrowserRouter([
   {
-    path: links.home,
-    element: <Layout />,
-    errorElement: <ErrorPage />,
+    path: '/',
+    errorElement: <GlobalError />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        path: links.root,
+        element: <Landing />,
       },
       {
-        path: links.profile,
-        element: <Profile />,
+        element: <ProtectedLayout />,
+        children: [
+          {
+            path: links.courses,
+            element: <Courses />,
+          },
+          {
+            path: `${links.courses}/:courseId`,
+            element: <Course />,
+          },
+        ],
+      },
+      {
+        path: links.login,
+        element: <Login />,
+      },
+      {
+        path: links.register,
+        element: <Register />,
       },
     ],
-  },
-  {
-    path: links.login,
-    element: <Login />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: links.register,
-    element: <Register />,
-    errorElement: <ErrorPage />,
   },
 ])
 

@@ -6,11 +6,18 @@ import { RouterProvider } from 'react-router-dom'
 
 import theme from '@/config/theme'
 import router from '@/config/routerManager'
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from './config/queryClient'
+
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools />
+      </ChakraProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 )
