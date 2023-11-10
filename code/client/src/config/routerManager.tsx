@@ -8,6 +8,7 @@ import { Landing } from '@/pages/Landing'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
 
+import { Course } from '@/pages/Course'
 import { Courses } from '@/pages/Courses'
 
 import links from '@/config/links'
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
           {
             path: links.courses,
             element: <Courses />,
+          },
+          {
+            path: `${links.courses}/:courseId`,
+            element: <Course />,
           },
         ],
       },
