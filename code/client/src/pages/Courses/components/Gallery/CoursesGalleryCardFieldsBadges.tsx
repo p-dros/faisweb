@@ -16,7 +16,13 @@ function CoursesGallertCardFieldsBadges({ fields }: Props) {
     )
   }
 
-  return <Box>{fields.length}</Box>
+  return (
+    <Box>
+      {fields.slice(0, 3).map((field) => (
+        <Tag key={field.id}>{field.shortcut}</Tag>
+      ))}
+    </Box>
+  )
 }
 
 export default CoursesGallertCardFieldsBadges

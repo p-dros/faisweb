@@ -3,6 +3,7 @@ import { CoursesResponse } from '@/types/pocketbaseTypes'
 import {
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
   Flex,
   Heading,
@@ -69,7 +70,9 @@ function CoursesGalleryCard({ course }: Props) {
         </Heading>
       </CardHeader>
       <CardBody>
-        <Text noOfLines={3}>{course.description}</Text>
+        <Text fontSize={'sm'}>{course.short_description}</Text>
+      </CardBody>
+      <CardFooter display={'block'}>
         <VStack divider={<StackDivider />} mt={6}>
           {courseInfo.map(({ label, value, icon }) => (
             <Flex
@@ -86,7 +89,7 @@ function CoursesGalleryCard({ course }: Props) {
             </Flex>
           ))}
         </VStack>
-      </CardBody>
+      </CardFooter>
     </Card>
   )
 }

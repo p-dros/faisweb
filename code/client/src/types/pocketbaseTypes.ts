@@ -52,6 +52,7 @@ export type CoursesVerificationFormOptions = 'exam' | 'assesment'
 
 export type CoursesRecord = {
   description: string
+  short_description?: string
   difficulty?: number
   ects?: number
   fields?: RecordIdString[]
