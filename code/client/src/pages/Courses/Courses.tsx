@@ -11,7 +11,7 @@ function Courses() {
   }
 
   return (
-    <Container maxW={'container.xl'} p={0}>
+    <Container maxW={'8xl'} p={0}>
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 3fr' }}
         justifyContent={'space-between'}
