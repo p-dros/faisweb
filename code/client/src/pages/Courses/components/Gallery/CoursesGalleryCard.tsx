@@ -3,6 +3,7 @@ import { CoursesResponse } from '@/types/pocketbaseTypes'
 import {
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
   Flex,
   Heading,
@@ -13,7 +14,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 
 import {
   FaCalendar,
@@ -52,14 +53,14 @@ const getCourseInfo = ({
 }
 
 function CoursesGalleryCard({ course }: Props) {
-  const courseInfo = getCourseInfo(course)
+  const courseInfo = useMemo(() => getCourseInfo(course), [course])
 
   return (
     <Card
       h={'full'}
       size={'sm'}
-      _hover={{ transform: 'scale(1.02)' }}
-      transition={'150ms'}>
+      _hover={{ bgColor: 'gray.100' }}
+      transition={'background-color 50ms'}>
       <CardHeader>
         <Heading as={'h3'} size={'md'} mt={2}>
           {course.name}
@@ -69,7 +70,9 @@ function CoursesGalleryCard({ course }: Props) {
         </Heading>
       </CardHeader>
       <CardBody>
-        <Text noOfLines={3}>{course.description}</Text>
+        <Text fontSize={'sm'}>{course.short_description}</Text>
+      </CardBody>
+      <CardFooter display={'block'}>
         <VStack divider={<StackDivider />} mt={6}>
           {courseInfo.map(({ label, value, icon }) => (
             <Flex
@@ -86,7 +89,7 @@ function CoursesGalleryCard({ course }: Props) {
             </Flex>
           ))}
         </VStack>
-      </CardBody>
+      </CardFooter>
     </Card>
   )
 }

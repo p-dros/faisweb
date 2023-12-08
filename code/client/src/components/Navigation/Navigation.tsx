@@ -1,7 +1,14 @@
 import { Center, Show } from '@chakra-ui/react'
+import React from 'react'
 import NavigationDesktop from './NavigationDesktop'
 import NavigationMobile from './NavigationMobile'
 import useScroll from '@/hooks/useScroll'
+
+// Memoized NavigationMobile component
+const MemoizedNavigationMobile = React.memo(NavigationMobile)
+
+// Memoized NavigationDesktop component
+const MemoizedNavigationDesktop = React.memo(NavigationDesktop)
 
 function Navigation() {
   const { hasScrolled, scrollDirection } = useScroll()
@@ -20,10 +27,12 @@ function Navigation() {
       transition={'top 350ms'}
       zIndex={'banner'}>
       <Show below={'md'}>
-        <NavigationMobile />
+        {/* Use the memoized version */}
+        <MemoizedNavigationMobile />
       </Show>
       <Show above={'md'}>
-        <NavigationDesktop />
+        {/* Use the memoized version */}
+        <MemoizedNavigationDesktop />
       </Show>
     </Center>
   )

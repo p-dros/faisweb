@@ -1,8 +1,8 @@
 import links from '@/config/links'
+import { CoursesResponseWithFields } from '@/types/pocketbaseExtensions'
 import { Grid, GridItem } from '@chakra-ui/react'
 import Link from '@ui/Link'
 import CoursesGalleryCard from './CoursesGalleryCard'
-import { CoursesResponseWithFields } from '@/types/pocketbaseExtensions'
 
 interface Props {
   courses: CoursesResponseWithFields[]
@@ -10,7 +10,7 @@ interface Props {
 
 function CoursesGallery({ courses }: Props) {
   return (
-    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}>
+    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
       {courses.map((course) => (
         <GridItem key={course.id}>
           <Link
@@ -26,7 +26,7 @@ function CoursesGallery({ courses }: Props) {
 
 function CoursesGallerySkeleton() {
   return (
-    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(240px, 1fr))'}>
+    <Grid gap={8} templateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
       {Array.from({ length: 18 }).map((_, index) => (
         <GridItem key={index}>
           <CoursesGalleryCard.Skeleton />
